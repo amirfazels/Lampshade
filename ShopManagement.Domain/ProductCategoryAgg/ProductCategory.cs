@@ -1,6 +1,39 @@
-﻿namespace ShopManagement.Domain.ProductCategoryAgg
+﻿using _0_Framework.Domain;
+
+namespace ShopManagement.Domain.ProductCategoryAgg
 {
-    public class ProductCategory
+    public class ProductCategory : EntityBase
     {
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+        public string Picture { get; private set; }
+        public string PictureAlt { get; private set; }
+        public string PictureTitle { get; private set; }
+        public string Keywords { get; private set; }
+        public string MetaDescription { get; private set; }
+        public string Slug { get; private set; }
+
+        public ProductCategory(string title, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        {
+            Title = title;
+            Description = description;
+            Picture = picture;
+            PictureAlt = pictureAlt;
+            PictureTitle = pictureTitle;
+            Keywords = keywords;
+            MetaDescription = metaDescription;
+            Slug = slug;
+        }
+        public void Edit(string title, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        {
+            Title = title;
+            Description = description;
+            Picture = picture;
+            PictureAlt = pictureAlt;
+            PictureTitle = pictureTitle;
+            Keywords = keywords;
+            MetaDescription = metaDescription;
+            Slug = slug;
+        }
     }
 }

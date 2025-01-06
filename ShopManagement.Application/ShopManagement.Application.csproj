@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShopManagement.Application.Contacts\ShopManagement.Application.Contacts.csproj" />
+  </ItemGroup>
+
 </Project>

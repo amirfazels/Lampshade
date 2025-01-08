@@ -1,10 +1,12 @@
-﻿namespace ShopManagement.Application.Contacts.ProductCategory
+﻿using _0_Framework.Application;
+
+namespace ShopManagement.Application.Contacts.ProductCategory
 {
     public interface IProductCategoryApplication
     {
-        void Create(CreateProductCategory command);
-        void Edit(EditProductCategory command);
-        Domain.ProductCategoryAgg.ProductCategory GetDetails(long id);
+        OperationResult Create(CreateProductCategory command);
+        OperationResult Edit(EditProductCategory command);
+        EditProductCategory GetDetails(long id);
         ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
     }
 }

@@ -4,7 +4,7 @@ namespace ShopManagement.Domain.ProductCategoryAgg
 {
     public class ProductCategory : EntityBase
     {
-        public string Title { get; private set; }
+        public string Name { get; private set; }
         public string Description { get; private set; }
         public string Picture { get; private set; }
         public string PictureAlt { get; private set; }
@@ -13,9 +13,9 @@ namespace ShopManagement.Domain.ProductCategoryAgg
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
 
-        public ProductCategory(string title, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public ProductCategory(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {
-            Title = title;
+            Name = name;
             Description = description;
             Picture = picture;
             PictureAlt = pictureAlt;
@@ -24,9 +24,9 @@ namespace ShopManagement.Domain.ProductCategoryAgg
             MetaDescription = metaDescription;
             Slug = slug;
         }
-        public void Edit(string title, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public void Edit(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {
-            Title = title;
+            Name = name;
             Description = description;
             Picture = picture;
             PictureAlt = pictureAlt;

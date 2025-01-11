@@ -1,3 +1,5 @@
+using ShopManagement.Configuration;
+
 namespace ServiceHost
 {
     public class Program
@@ -5,6 +7,8 @@ namespace ServiceHost
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddShopManagementServices(builder.Configuration);
 
             // Add services to the container.
             builder.Services.AddRazorPages();

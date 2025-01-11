@@ -11,7 +11,7 @@ namespace ShopManagement.Configuration
 {
     public static class ShopManagementBooststrapper
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddShopManagementServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();

@@ -226,7 +226,7 @@
     </div>
 
     <!-- jQuery  -->
-    <script src="~/AdminTheme/assets/js/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="~/AdminTheme/assets/js/bootstrap.min.js"></script>
     <script src="~/AdminTheme/assets/js/waves.js"></script>
@@ -272,6 +272,9 @@
 
 
     @await RenderSectionAsync("Scripts", required: false);
+    
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
 
     <script src="~/AdminTheme/assets/js/site.js"></script>
 

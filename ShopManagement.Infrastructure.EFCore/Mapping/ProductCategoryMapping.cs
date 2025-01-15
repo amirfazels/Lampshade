@@ -18,6 +18,9 @@ namespace ShopManagement.Infrastructure.EFCore.Mapping
             entityTypeBuilder.Property(x => x.PictureTitle).HasMaxLength(500);
             entityTypeBuilder.Property(x => x.Description).HasMaxLength(500);
             entityTypeBuilder.Property(x => x.Picture).HasMaxLength(1000);
+            entityTypeBuilder.HasMany(x => x.Products)
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
         }
     }
 }

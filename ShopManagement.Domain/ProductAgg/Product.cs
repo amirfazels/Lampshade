@@ -35,6 +35,7 @@ namespace ShopManagement.Domain.ProductAgg
             Slug = slug;
             Keywords = keywords;
             MetaDescription = metaDescription;
+            IsInStock = true;
         }
         public void Edit(string name, string code, double unitPrice, string shortDescription,
             string description, string picture, string pictureAlt, string pictureTitle,

@@ -1,8 +1,9 @@
-﻿using ShopManagement.Domain.ProductCategoryAgg;
+﻿using _0_Framework.Domain;
+using ShopManagement.Domain.ProductCategoryAgg;
 
 namespace ShopManagement.Domain.ProductAgg
 {
-    public class Product
+    public class Product : EntityBase
     {
         public string Name { get; private set; }
         public string Code { get; private set; }

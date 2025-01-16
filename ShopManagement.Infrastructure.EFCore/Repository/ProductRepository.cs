@@ -45,7 +45,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Code = x.Code,
                 Picture = x.Picture,
                 UnitPrice = x.UnitPrice,
-                CreationDate = x.CreationDate.ToString()
+                CreationDate = x.CreationDate.ToString(),
+                IsInStock = x.IsInStock,
             });
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
                 query = query.Where(x => x.Name.Contains(searchModel.Name));

@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Infrastructure;
+using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
 using ShopManagement.Domain.ProductCategoryAgg;
 
@@ -27,6 +28,15 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 MetaDescription = x.MetaDescription,
                 Slug = x.Slug
             }).FirstOrDefault(x => x.Id == id);
+        }
+
+        public ICollection<ProductViewModel> GetProductCategories()
+        {
+            return _context.ProductCategories.Select(x => new ProductViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
         }
 
         public ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)

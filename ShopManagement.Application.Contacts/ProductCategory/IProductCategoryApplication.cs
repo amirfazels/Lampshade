@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using ShopManagement.Application.Contacts.Product;
 
 namespace ShopManagement.Application.Contacts.ProductCategory
 {
@@ -7,6 +8,7 @@ namespace ShopManagement.Application.Contacts.ProductCategory
         OperationResult Create(CreateProductCategory command);
         OperationResult Edit(EditProductCategory command);
         EditProductCategory GetDetails(long id);
+        ICollection<ProductViewModel> GetProductCategories();
         ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
     }
 }

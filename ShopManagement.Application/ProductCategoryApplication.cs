@@ -1,5 +1,7 @@
 ﻿using _0_Framework.Application;
+using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
+using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
 
 namespace ShopManagement.Application
@@ -64,6 +66,11 @@ namespace ShopManagement.Application
         public EditProductCategory GetDetails(long id)
         {
             return _productCategoryRepository.GetDetails(id);
+        }
+
+        public ICollection<ProductViewModel> GetProductCategories()
+        {
+            return _productCategoryRepository.GetProductCategories();
         }
 
         public ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)

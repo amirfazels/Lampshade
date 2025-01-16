@@ -8,7 +8,7 @@ namespace ShopManagement.Application.Contacts.ProductCategory
         OperationResult Create(CreateProductCategory command);
         OperationResult Edit(EditProductCategory command);
         EditProductCategory GetDetails(long id);
-        ICollection<ProductViewModel> GetProductCategories();
+        ICollection<ProductCategoryViewModel> GetProductCategories();
         ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
     }
 }

@@ -30,9 +30,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
-        public ICollection<ProductViewModel> GetProductCategories()
+        public ICollection<ProductCategoryViewModel> GetProductCategories()
         {
-            return _context.ProductCategories.Select(x => new ProductViewModel
+            return _context.ProductCategories.Select(x => new ProductCategoryViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

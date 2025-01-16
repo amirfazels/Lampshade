@@ -68,7 +68,7 @@ namespace ShopManagement.Application
             return _productCategoryRepository.GetDetails(id);
         }
 
-        public ICollection<ProductViewModel> GetProductCategories()
+        public ICollection<ProductCategoryViewModel> GetProductCategories()
         {
             return _productCategoryRepository.GetProductCategories();
         }

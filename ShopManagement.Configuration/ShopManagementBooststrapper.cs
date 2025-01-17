@@ -5,9 +5,11 @@ using ShopManagement.Application;
 using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
 using ShopManagement.Application.Contacts.ProductPicture;
+using ShopManagement.Application.Contacts.Slide;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
 using ShopManagement.Domain.ProductPictureAgg;
+using ShopManagement.Domain.SlideAgg;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 
@@ -22,9 +24,12 @@ namespace ShopManagement.Configuration
             
             services.AddTransient<IProductApplication, ProductApplication>();
             services.AddTransient<IProductRepository, ProductRepository>();
-            
+
             services.AddTransient<IProductPictureApplication, ProductPictureApplication>();
             services.AddTransient<IProductPictureRepository, ProductPictureRepository>();
+
+            services.AddTransient<ISlideApplication, SlideApplication>();
+            services.AddTransient<ISlideRepository, SlideRepository>();
 
 
             services.AddDbContext<ShopContext>(options =>

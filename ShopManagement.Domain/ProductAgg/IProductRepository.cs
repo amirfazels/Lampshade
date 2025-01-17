@@ -6,6 +6,7 @@ namespace ShopManagement.Domain.ProductAgg
     public interface IProductRepository : IRepository<long, Product>
     {
         EditProduct GetDetails(long id);
+        ICollection<ProductViewModel> GetProducts();
         ICollection<ProductViewModel> Search(ProductSearchModel searchModel);
     }
 }

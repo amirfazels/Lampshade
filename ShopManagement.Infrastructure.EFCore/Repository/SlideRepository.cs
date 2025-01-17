@@ -39,6 +39,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Picture = x.Picture,
                 Heading = x.Heading,
                 Title = x.Title,
+                IsRemoved = x.IsRemoved,
+                CreationDate = x.CreationDate.ToString(),
             }).ToList();
         }
     }

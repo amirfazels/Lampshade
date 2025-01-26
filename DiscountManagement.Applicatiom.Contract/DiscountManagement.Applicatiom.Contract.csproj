@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
-    <ProjectReference Include="..\DiscountManagement.Applicatiom.Contract\DiscountManagement.Applicatiom.Contract.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ namespace DiscountManagement.Domain.CustomerDiscountAgg
         public int DiscountRate { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
-        public bool IsActive { get; private set; }
+        //public bool IsActive { get; private set; }
         public string Reason { get; private set; }
         
         public CustomerDiscount(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason)

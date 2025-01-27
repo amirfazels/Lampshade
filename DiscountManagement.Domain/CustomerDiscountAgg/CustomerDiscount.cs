@@ -17,7 +17,7 @@ namespace DiscountManagement.Domain.CustomerDiscountAgg
             DiscountRate = discountRate;
             StartDate = startDate;
             EndDate = endDate;
-            IsActive = true;
+            //IsActive = true;
             Reason = reason;
         }
 

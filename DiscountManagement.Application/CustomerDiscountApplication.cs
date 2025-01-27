@@ -57,9 +57,9 @@ namespace DiscountManagement.Application
             return operation.Succedded();
         }
 
-        public EditCustomerDiscount GetDetails()
+        public EditCustomerDiscount GetDetails(long id)
         {
-            throw new NotImplementedException();
+            return _customerDiscountRepository.GetDetails(id);
         }
 
         public ICollection<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel)

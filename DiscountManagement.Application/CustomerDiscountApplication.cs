@@ -64,7 +64,7 @@ namespace DiscountManagement.Application
 
         public ICollection<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel)
         {
-            throw new NotImplementedException();
+            return _customerDiscountRepository.Search(searchModel);
         }
     }
 }

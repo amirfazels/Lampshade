@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contacts.Slide;
 using ShopManagement.Domain.SlideAgg;
@@ -40,7 +41,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Heading = x.Heading,
                 Title = x.Title,
                 IsRemoved = x.IsRemoved,
-                CreationDate = x.CreationDate.ToString(),
+                CreationDate = x.CreationDate.ToFarsi(),
             }).ToList();
         }
     }

@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using DiscountManagement.Applicatiom.Contract.CustomerDiscount;
 using DiscountManagement.Domain.CustomerDiscountAgg;
 using ShopManagement.Infrastructure.EFCore;
@@ -24,8 +25,8 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Id = x.Id,
                 ProductId = x.ProductId,
                 DiscountRate = x.DiscountRate,
-                EndDate = x.EndDate.ToString(),
-                StartDate = x.StartDate.ToString(),
+                EndDate = x.EndDate.ToFarsi(),
+                StartDate = x.StartDate.ToFarsi(),
                 Reason = x.Reason
             }).FirstOrDefault();
         }
@@ -38,8 +39,10 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Id = x.Id,
                 ProductId = x.ProductId,
                 DiscountRate = x.DiscountRate,
-                EndDate = x.EndDate.ToString(),
-                StartDate = x.StartDate.ToString(),
+                EndDate = x.EndDate.ToFarsi(),
+                StartDate = x.StartDate.ToFarsi(),
+                StartDateGr = x.StartDate,
+                EndDateGr = x.EndDate,
                 Reason = x.Reason
             });
 
@@ -48,14 +51,12 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
 
             if (!string.IsNullOrWhiteSpace(searchModel.StartDate))
             {
-                var startDate = DateTime.UtcNow;
-                query = query.Where(x => x.StartDateGr >= startDate);
+                query = query.Where(x => x.StartDateGr >= searchModel.StartDate.ToGeorgianDateTime());
             }
 
             if (!string.IsNullOrWhiteSpace(searchModel.EndDate))
             {
-                var endDate = DateTime.UtcNow;
-                query = query.Where(x => x.EndDateGr <= endDate);
+                query = query.Where(x => x.EndDateGr <= searchModel.EndDate.ToGeorgianDateTime());
             }
             var discounts = query.OrderByDescending(x => x.Id).ToList();
             discounts.ForEach(discount =>

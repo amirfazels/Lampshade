@@ -21,13 +21,13 @@ namespace DiscountManagement.Domain.CustomerDiscountAgg
             Reason = reason;
         }
 
-        public void Edit(long productId, int discountRate, DateTime startDate, DateTime endDate, bool isActive, string reason)
+        public void Edit(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason)
         {
             ProductId = productId;
             DiscountRate = discountRate;
             StartDate = startDate;
             EndDate = endDate;
-            IsActive = isActive;
+            //IsActive = isActive;
             Reason = reason;
         }
     }

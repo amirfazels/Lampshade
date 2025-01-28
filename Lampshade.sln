@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DM.Infrastructure", "DM.Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.Infrastructure.EfCore", "DiscountManagement.Infrastructure.EfCore\DiscountManagement.Infrastructure.EfCore.csproj", "{52984E5E-264D-4EDF-A69C-DF5154F9A587}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.Configuration", "DiscountManagement.Configuration\DiscountManagement.Configuration.csproj", "{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{52984E5E-264D-4EDF-A69C-DF5154F9A587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52984E5E-264D-4EDF-A69C-DF5154F9A587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52984E5E-264D-4EDF-A69C-DF5154F9A587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +123,6 @@ Global
 		{2AC66756-CE8C-4741-BBDC-2E2C254D4041} = {C8A9AA53-185B-41FE-A7C9-D5F0ACA24856}
 		{7A4520E9-45FD-4E56-9ECC-E0E80901D8D9} = {FBFE6602-BE27-41AC-BBA7-0B990E472742}
 		{52984E5E-264D-4EDF-A69C-DF5154F9A587} = {7A4520E9-45FD-4E56-9ECC-E0E80901D8D9}
+		{05EFA3B4-7ECE-42AE-B149-A4FECD6133C5} = {7A4520E9-45FD-4E56-9ECC-E0E80901D8D9}
 	EndGlobalSection
 EndGlobal

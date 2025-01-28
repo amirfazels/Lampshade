@@ -18,7 +18,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
             _shopContext = shopContext;
         }
 
-        public EditCustomerDiscount GetDetails()
+        public EditCustomerDiscount GetDetails(long id)
         {
             return _context.CustomerDiscounts.Select(x => new EditCustomerDiscount
             {
@@ -28,7 +28,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 EndDate = x.EndDate.ToFarsi(),
                 StartDate = x.StartDate.ToFarsi(),
                 Reason = x.Reason
-            }).FirstOrDefault();
+            }).FirstOrDefault(x => x.Id.Equals(id));
         }
 
         public ICollection<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel)

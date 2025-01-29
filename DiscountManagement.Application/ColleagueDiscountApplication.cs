@@ -15,7 +15,15 @@ namespace DiscountManagement.Application
 
         public OperationResult Define(DefineColleagueDiscount command)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+
+            if (_colleagueDiscountRepository.Exists(x => x.ProductId == command.ProductId))
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
+
+            var colleagueDiscount = new ColleagueDiscount(command.ProductId, command.DiscountRate);
+            _colleagueDiscountRepository.Create(colleagueDiscount);
+            _colleagueDiscountRepository.SaveChanges();
+            return operation.Succedded();
         }
 
         public OperationResult Edit(EditColleagueDiscount command)

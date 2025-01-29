@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Application;
 using DiscountManagement.Applicatiom.Contract.ColleagueDiscount;
 using DiscountManagement.Domain.ColleagueDiscountAgg;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace DiscountManagement.Application
 {
@@ -41,7 +42,7 @@ namespace DiscountManagement.Application
 
             _colleagueDiscountRepository.SaveChanges();
             return operation.Succedded();
-            }
+        }
 
         public EditColleagueDiscount GetDetails(long id)
         {
@@ -50,7 +51,16 @@ namespace DiscountManagement.Application
 
         public OperationResult Remove(long id)
         {
-            throw new NotImplementedException();
+            var operation = new OperationResult();
+            var colleagueDiscount = _colleagueDiscountRepository.Get(id);
+
+            if (colleagueDiscount == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+            
+            colleagueDiscount.Remove();
+
+            _colleagueDiscountRepository.SaveChanges();
+            return operation.Succedded();
         }
 
         public OperationResult Restore(long id)

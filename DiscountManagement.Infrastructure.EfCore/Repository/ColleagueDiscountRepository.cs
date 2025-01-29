@@ -36,7 +36,8 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Id = x.Id,
                 ProductId = x.ProductId,
                 DiscountRate = x.DiscountRate,
-                CreationDate = x.CreationDate.ToFarsi()
+                CreationDate = x.CreationDate.ToFarsi(),
+                IsRemoved = x.IsRemove,
             });
             if (searchModel.ProductId > 0)
                 query = query.Where(x => x.ProductId == searchModel.ProductId);

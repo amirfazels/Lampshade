@@ -28,8 +28,20 @@ namespace DiscountManagement.Application
 
         public OperationResult Edit(EditColleagueDiscount command)
         {
-            throw new NotImplementedException();
-        }
+            var operation = new OperationResult();
+            var colleagueDiscount = _colleagueDiscountRepository.Get(command.Id);
+            
+            if (colleagueDiscount == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+            
+            if (_colleagueDiscountRepository.Exists(x => x.ProductId == command.ProductId && x.Id != command.Id))
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
+            
+            colleagueDiscount.Edit(command.ProductId, command.DiscountRate);
+
+            _colleagueDiscountRepository.SaveChanges();
+            return operation.Succedded();
+            }
 
         public EditColleagueDiscount GetDetails(long id)
         {

@@ -14,7 +14,7 @@ namespace DiscountManagement.Domain.ColleagueDiscountAgg
             DiscountRate = discountRate;
             IsRemove = false;
         }
-        public void Edit(long productId, int discountRate, string reason)
+        public void Edit(long productId, int discountRate)
         {
             ProductId = productId;
             DiscountRate = discountRate;

@@ -16,7 +16,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             InStock = false;
         }
 
-        private long CalculateCurrentCount()
+        public long CalculateCurrentCount()
         {
             var plus = Operations.Where(x => x.Operation).Sum(x => x.Count);
             var minus = Operations.Where(x => !x.Operation).Sum(x => x.Count);

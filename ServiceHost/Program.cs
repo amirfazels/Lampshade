@@ -1,5 +1,6 @@
 using ShopManagement.Configuration;
 using DiscountManagement.Configuration;
+using InventoryManagement.Configuration;
 
 namespace ServiceHost
 {
@@ -11,6 +12,7 @@ namespace ServiceHost
 
             builder.Services.AddShopManagementServices(builder.Configuration);
             builder.Services.AddDiscountManagementServices(builder.Configuration);
+            builder.Services.AddInventoryManagementServices(builder.Configuration);
 
             // Add services to the container.
             builder.Services.AddRazorPages();

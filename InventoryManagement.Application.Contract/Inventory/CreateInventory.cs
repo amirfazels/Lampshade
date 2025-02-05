@@ -7,4 +7,9 @@ public class CreateInventory
     public long ProductId { get; set; }
     public double UnitPrice { get; set; }
     public ICollection<ProductViewModel> Products { get; set; }
+
+    public CreateInventory()
+    {
+        Products = new List<ProductViewModel>();
+    }
 }

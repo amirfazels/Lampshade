@@ -24,7 +24,6 @@ namespace ShopManagement.Application
                 (
                 command.Name, 
                 command.Code, 
-                command.UnitPrice,
                 command.ShortDescription,
                 command.Description,
                 command.Picture,
@@ -54,7 +53,6 @@ namespace ShopManagement.Application
                 (
                 command.Name,
                 command.Code,
-                command.UnitPrice,
                 command.ShortDescription,
                 command.Description,
                 command.Picture,
@@ -77,32 +75,6 @@ namespace ShopManagement.Application
         public ICollection<ProductViewModel> GetProducts()
         {
             return _productRepository.GetProducts();
-        }
-
-        public OperationResult IsStock(long id)
-        {
-            var Operation = new OperationResult();
-            var product = _productRepository.Get(id);
-            if (product == null)
-                return Operation.Failed(ApplicationMessages.RecordNotFound);
-
-            product.InStock();
-            _productRepository.SaveChanges();
-            return Operation.Succedded();
-        }
-
-        public OperationResult NotInStock(long id)
-        {
-            var Operation = new OperationResult();
-
-            var product = _productRepository.Get(id);
-
-            if (product == null)
-                return Operation.Failed(ApplicationMessages.RecordNotFound);
-
-            product.NotInStock();
-            _productRepository.SaveChanges();
-            return Operation.Succedded();
         }
 
         public ICollection<ProductViewModel> Search(ProductSearchModel searchModel)

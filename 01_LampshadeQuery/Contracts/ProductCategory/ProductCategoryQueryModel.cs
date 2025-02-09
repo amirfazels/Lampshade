@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using _01_LampshadeQuery.Contracts.Product;
+using Microsoft.Extensions.Options;
 
 namespace _01_LampshadeQuery.Contracts.ProductCategory
 {
@@ -10,5 +11,6 @@ namespace _01_LampshadeQuery.Contracts.ProductCategory
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
         public string Slug { get; set; }
+        public ICollection<ProductQueryModel> Products { get; set; }
     }
 }

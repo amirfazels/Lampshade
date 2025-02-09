@@ -3,5 +3,6 @@
     public interface IProductCategoryQuery
     {
         ICollection<ProductCategoryQueryModel> GetProductCategories();
+        ICollection<ProductCategoryQueryModel> GetProductCategoriesWithProducts();
     }
 }

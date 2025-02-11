@@ -38,11 +38,13 @@ namespace _01_LampshadeQuery.Query
         public ICollection<ProductCategoryQueryModel> GetProductCategoriesWithProducts()
         {
             var inventory = _inventoryContext.Inventory
-                .Select(x => new 
-                { 
-                    x.ProductId, 
-                    x.UnitPrice 
+                .Select(x => new
+                {
+                    x.ProductId,
+                    x.UnitPrice
                 }).ToList();
+
+            var discount = _discountContext.CustomerDiscounts.ToList();
 
 
             var categories = _shopcontext.ProductCategories
@@ -64,8 +66,19 @@ namespace _01_LampshadeQuery.Query
                 foreach (var product in category.Products)
                 {
                     var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+                    var productDiscount = discount.FirstOrDefault(x => x.ProductId == product.Id && x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
                     if (productInventory != null)
-                        product.Price = productInventory.UnitPrice.ToMoney();                    
+                    {
+                        product.Price = productInventory.UnitPrice.ToMoney();
+
+                        if (productDiscount != null)
+                        {
+                            product.DiscountRate = productDiscount.DiscountRate;
+                            product.PriceWithDiscount = (productInventory.UnitPrice - ((productInventory.UnitPrice *  product.DiscountRate) / 100)).ToMoney();
+                        }
+
+                    }
+                    product.HasDiscount = product.PriceWithDiscount != null;
                 }
             });
 

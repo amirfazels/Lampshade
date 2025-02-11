@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Application;
 using _01_LampshadeQuery.Contracts.Product;
 using _01_LampshadeQuery.Contracts.ProductCategory;
+using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.ProductAgg;
@@ -10,18 +11,20 @@ namespace _01_LampshadeQuery.Query
 {
     public class ProductCategoryQuery : IProductCategoryQuery
     {
-        private readonly ShopContext _context;
+        private readonly ShopContext _shopcontext;
         private readonly InventoryContext _inventoryContext;
+        private readonly DiscountContext _discountContext;
 
-        public ProductCategoryQuery(ShopContext context, InventoryContext inventoryContext)
+        public ProductCategoryQuery(ShopContext shopcontext, InventoryContext inventoryContext, DiscountContext discountContext)
         {
-            _context = context;
+            _shopcontext = shopcontext;
             _inventoryContext = inventoryContext;
+            _discountContext = discountContext;
         }
 
         public ICollection<ProductCategoryQueryModel> GetProductCategories()
         {
-            return _context.ProductCategories.Select(x => new ProductCategoryQueryModel
+            return _shopcontext.ProductCategories.Select(x => new ProductCategoryQueryModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -42,7 +45,7 @@ namespace _01_LampshadeQuery.Query
                 }).ToList();
 
 
-            var categories =  _context.ProductCategories
+            var categories = _shopcontext.ProductCategories
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Category)
                 .Select(x => new ProductCategoryQueryModel
@@ -56,9 +59,9 @@ namespace _01_LampshadeQuery.Query
                     Products = MapProducts(x.Products)
                 }).ToList();
 
-            categories.ForEach(categories =>
+            categories.ForEach(category =>
             {
-                foreach (var product in categories.Products)
+                foreach (var product in category.Products)
                 {
                     var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
                     if (productInventory != null)

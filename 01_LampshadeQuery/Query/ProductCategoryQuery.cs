@@ -58,7 +58,7 @@ namespace _01_LampshadeQuery.Query
                     PictureAlt = x.PictureAlt,
                     PictureTitle = x.PictureTitle,
                     Slug = x.Slug,
-                    Products = MapProducts(x.Products)
+                    Products = MapProducts(x.Products),
                 }).ToList();
 
             categories.ForEach(category =>

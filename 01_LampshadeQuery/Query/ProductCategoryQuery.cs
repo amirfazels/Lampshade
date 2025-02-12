@@ -100,5 +100,55 @@ namespace _01_LampshadeQuery.Query
                 Category = x.Category.Name
             }).ToList();
         }
+
+        public ProductCategoryQueryModel GetProductCategoryWithProductsBy(string slug)
+        {
+            var inventory = _inventoryContext.Inventory
+                .Select(x => new
+                {
+                    x.ProductId,
+                    x.UnitPrice
+                }).ToList();
+
+            var discount = _discountContext.CustomerDiscounts.ToList();
+
+
+            var category = _shopcontext.ProductCategories
+                .Include(x => x.Products)
+                .ThenInclude(x => x.Category)
+                .Select(x => new ProductCategoryQueryModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    MetaDescription = x.MetaDescription,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                    Products = MapProducts(x.Products),
+                }).FirstOrDefault(x => x.Slug == slug);
+
+            foreach (var product in category.Products) 
+            {
+                var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+                var productDiscount = discount.FirstOrDefault(x => x.ProductId == product.Id && x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
+                if (productInventory != null)
+                {
+                    product.Price = productInventory.UnitPrice.ToMoney();
+
+                    if (productDiscount != null)
+                    {
+                        product.DiscountExpireDate = productDiscount.EndDate.ToDiscountFormat();
+                        product.DiscountRate = productDiscount.DiscountRate;
+                        product.PriceWithDiscount = (productInventory.UnitPrice - ((productInventory.UnitPrice * product.DiscountRate) / 100)).ToMoney();
+                    }
+
+                }
+                product.HasDiscount = product.PriceWithDiscount != null;
+            }
+
+            return category;
+        }
     }
 }

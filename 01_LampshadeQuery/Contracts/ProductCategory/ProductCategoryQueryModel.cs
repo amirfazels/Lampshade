@@ -12,5 +12,7 @@ namespace _01_LampshadeQuery.Contracts.ProductCategory
         public string PictureTitle { get; set; }
         public string Slug { get; set; }
         public ICollection<ProductQueryModel> Products { get; set; }
+        public string Description { get; set; }
+        public string MetaDescription { get; set; }
     }
 }

@@ -63,5 +63,55 @@ namespace _01_LampshadeQuery.Query
             });
             return products;
         }
+
+        public List<ProductQueryModel> Search(string value)
+        {
+            var inventory = _inventoryContext.Inventory
+                .Select(x => new
+                {
+                    x.ProductId,
+                    x.UnitPrice
+                }).ToList();
+
+            var discount = _discountContext.CustomerDiscounts.ToList(); 
+            var query = _shopContext.Products
+                .Include(x => x.Category)
+                .Select(x => new ProductQueryModel
+                {
+                    Id = x.Id,
+                    Category = x.Category.Name,
+                    CategorySlug = x.Category.Slug,
+                    Name = x.Name,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                    ShortDescription = x.ShortDescription
+                }).AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(value))
+                query = query.Where(x => x.Name.Contains(value) || x.ShortDescription.Contains(value));
+
+            var products = query.OrderByDescending(x => x.Id).ToList();
+
+            products.ForEach(product =>
+            {
+                var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+                var productDiscount = discount.FirstOrDefault(x => x.ProductId == product.Id && x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
+                if (productInventory != null)
+                {
+                    product.Price = productInventory.UnitPrice.ToMoney();
+
+                    if (productDiscount != null)
+                    {
+                        product.DiscountRate = productDiscount.DiscountRate;
+                        product.PriceWithDiscount = (productInventory.UnitPrice - ((productInventory.UnitPrice * product.DiscountRate) / 100)).ToMoney();
+                    }
+
+                }
+                product.HasDiscount = product.PriceWithDiscount != null;
+            });
+            return products;
+        }
     }
 }

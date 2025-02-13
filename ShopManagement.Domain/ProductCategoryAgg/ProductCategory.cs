@@ -20,22 +20,22 @@ namespace ShopManagement.Domain.ProductCategoryAgg
             Products = new List<Product>();
         }
 
-        public ProductCategory(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public ProductCategory(string name, string description, /*string picture,*/ string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {
             Name = name;
             Description = description;
-            Picture = picture;
+            //Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
             Keywords = keywords;
             MetaDescription = metaDescription;
             Slug = slug;
         }
-        public void Edit(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public void Edit(string name, string description, /*string picture,*/ string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {
             Name = name;
             Description = description;
-            Picture = picture;
+            //Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
             Keywords = keywords;

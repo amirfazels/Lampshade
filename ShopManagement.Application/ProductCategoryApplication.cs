@@ -24,7 +24,7 @@ namespace ShopManagement.Application
             var productCategory = new ProductCategory
                 (command.Name,
                 command.Description,
-                command.Picture,
+                //command.Picture,
                 command.PictureAlt,
                 command.PictureTitle,
                 command.Keywords,
@@ -53,7 +53,7 @@ namespace ShopManagement.Application
             productCategory.Edit
                 (command.Name,
                 command.Description,
-                command.Picture,
+                //command.Picture,
                 command.PictureAlt,
                 command.PictureTitle,
                 command.Keywords,

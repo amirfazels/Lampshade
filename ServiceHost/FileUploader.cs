@@ -21,7 +21,7 @@ namespace ServiceHost
                 Directory.CreateDirectory(directoryPath);
             var fileName = $"{DateTime.Now.ToFileTime()}_{file.FileName}";
             var filePath = $"{directoryPath}\\{fileName}";
-            using (var output = System.IO.File.Create(filePath))
+            using (var output = File.Create(filePath))
             {
                 file.CopyTo(output);
             }

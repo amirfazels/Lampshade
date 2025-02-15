@@ -19,13 +19,13 @@ namespace ServiceHost
 
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
-
-            var filePath = $"{directoryPath}\\{file.FileName}";
+            var fileName = $"{DateTime.Now.ToFileTime()}_{file.FileName}";
+            var filePath = $"{directoryPath}\\{fileName}";
             using (var output = System.IO.File.Create(filePath))
             {
                 file.CopyTo(output);
             }
-            return Path.Combine(path, file.FileName);
+            return Path.Combine(path, fileName);
         }
     }
 }

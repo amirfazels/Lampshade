@@ -4,5 +4,6 @@
     {
         public const string IsRequired = "این فیلد اجباری است";
         public const string MaxFileSize = "سایز فایل بیش از حد تعین شده است";
+        public const string InvalidFileFormat = "فرمت فایل مجاز نمیباشد";
     }
 }

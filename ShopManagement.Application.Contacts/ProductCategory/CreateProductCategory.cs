@@ -12,6 +12,7 @@ namespace ShopManagement.Application.Contacts.ProductCategory
         public string Description { get; set; }
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         [MaxFileSize(3 * 1024 * 1024, ErrorMessage = ValidationMessage.MaxFileSize)]
+        [FileExtentionLimitation(new string[] {".jpeg", ".jpg", ".png"}, ErrorMessage = ValidationMessage.InvalidFileFormat)]
         public IFormFile Picture { get; set; }
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }

@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 using ShopManagement.Application.Contacts.ProductCategory;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,11 +12,11 @@ namespace ShopManagement.Application.Contacts.Product
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public string Code { get; set; }
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string ShortDescription { get; set; }
-        public string Description { get; set; }
-        public string Picture { get; set; }
-        public string PictureAlt { get; set; }
-        public string PictureTitle { get; set; }
+        public string? ShortDescription { get; set; }
+        public string? Description { get; set; }
+        public IFormFile? Picture { get; set; }
+        public string? PictureAlt { get; set; }
+        public string? PictureTitle { get; set; }
         [Range(1, long.MaxValue, ErrorMessage = ValidationMessage.IsRequired)]
         public long CategoryId { get; set; }
         [Required(ErrorMessage = ValidationMessage.IsRequired)]

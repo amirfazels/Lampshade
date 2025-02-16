@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using _0_Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
 using ShopManagement.Domain.ProductCategoryAgg;
@@ -38,6 +39,15 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Name = x.Name,
             }).ToList();
+        }
+
+        public string GetSlugById(long id)
+        {
+            return _context.ProductCategories
+                .Select(x => new { x.Slug, x.Id })
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Id == id)
+                .Slug;
         }
 
         public ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)

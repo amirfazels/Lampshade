@@ -7,17 +7,20 @@ namespace ShopManagement.Application
     public class SlideApplication : ISlideApplication
     {
         private readonly ISlideRepository _slideRepository;
+        private readonly IFileUploader _fileUploader;
 
-        public SlideApplication(ISlideRepository slideRepository)
+        public SlideApplication(ISlideRepository slideRepository, IFileUploader fileUploader)
         {
             _slideRepository = slideRepository;
+            _fileUploader = fileUploader;
         }
 
         public OperationResult Create(CreateSlide command)
         {
             var operation = new OperationResult();
+            var picturePath = _fileUploader.Upload(command.Picture, "sliders");
             var slide = new Slide(
-                command.Picture, 
+                picturePath, 
                 command.PictureAlt, 
                 command.PictureTitle, 
                 command.Heading, 
@@ -36,8 +39,9 @@ namespace ShopManagement.Application
             var slide = _slideRepository.Get(command.Id);
             if (slide == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
+            var picturePath = _fileUploader.Upload(command.Picture, "sliders");
             slide.Edit(
-                command.Picture,
+                picturePath,
                 command.PictureAlt,
                 command.PictureTitle,
                 command.Heading,

@@ -43,6 +43,12 @@ namespace _01_LampshadeQuery.Query
                     PictureAlt = x.PictureAlt,
                     PictureTitle = x.PictureTitle,
                     Slug = x.Slug,
+                    CategorySlug = x.Category.Slug,
+                    Code = x.Code,
+                    Description = x.Description,
+                    Keywords = x.Keywords,
+                    MetaDescription = x.MetaDescription,
+                    ShortDescription = x.ShortDescription
                 }).FirstOrDefault(x => x.Slug.Equals(slug));
 
             if (product == null)

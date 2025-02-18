@@ -20,5 +20,6 @@
         public string Description { get; set; }
         public string MetaDescription { get; set; }
         public string Keywords { get; set; }
+        public bool IsInStock { get; set; }
     }
 }

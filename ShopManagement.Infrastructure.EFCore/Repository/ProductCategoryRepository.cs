@@ -43,11 +43,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 
         public string GetSlugById(long id)
         {
-            return _context.ProductCategories
-                .Select(x => new { x.Slug, x.Id })
-                .AsNoTracking()
-                .FirstOrDefault(x => x.Id == id)
-                .Slug;
+            return _context.ProductCategories.Select(x => new { x.Slug, x.Id }).First(x => x.Id == id).Slug;
         }
 
         public ICollection<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)

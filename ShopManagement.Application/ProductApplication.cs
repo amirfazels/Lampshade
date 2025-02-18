@@ -12,10 +12,11 @@ namespace ShopManagement.Application
         private readonly IProductRepository _productRepository;
         private readonly IProductCategoryRepository _productCategoryRepository;
 
-        public ProductApplication(IProductRepository productRepository, IFileUploader fileUploader)
+        public ProductApplication(IProductRepository productRepository, IFileUploader fileUploader, IProductCategoryRepository productCategoryRepository)
         {
             _productRepository = productRepository;
             _fileUploader = fileUploader;
+            _productCategoryRepository = productCategoryRepository;
         }
 
         public OperationResult Create(CreateProduct command)
@@ -24,8 +25,8 @@ namespace ShopManagement.Application
             if (_productRepository.Exists(x => x.Name == command.Name))
                 return Operation.Failed(ApplicationMessages.DuplicatedRecord);
             var slug = command.Slug.Slugify();
-            var categorySlug = _productCategoryRepository.GetSlugById(command.CategoryId);
-            var picturePath = $"{categorySlug}\\{slug}";
+            var Categoryslug = _productCategoryRepository.GetSlugById(command.CategoryId);
+            var picturePath = $"{Categoryslug}\\{slug}";
             var pictureName = _fileUploader.Upload(command.Picture, picturePath);
             var product = new Product
                 (

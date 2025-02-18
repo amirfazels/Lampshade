@@ -26,6 +26,7 @@ namespace _01_LampshadeQuery.Query
                 .Select(x => new
                 {
                     x.ProductId,
+                    x.InStock,
                     x.UnitPrice
                 }).ToList();
 
@@ -58,10 +59,12 @@ namespace _01_LampshadeQuery.Query
             var productDiscount = discount.FirstOrDefault(x => x.ProductId == product.Id && x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
             if (productInventory != null)
             {
+                product.IsInStock = productInventory.InStock;
                 product.Price = productInventory.UnitPrice.ToMoney();
 
                 if (productDiscount != null)
                 {
+                    product.DiscountExpireDate = productDiscount.EndDate.ToDiscountFormat();
                     product.DiscountRate = productDiscount.DiscountRate;
                     product.PriceWithDiscount = (productInventory.UnitPrice - ((productInventory.UnitPrice * product.DiscountRate) / 100)).ToMoney();
                 }

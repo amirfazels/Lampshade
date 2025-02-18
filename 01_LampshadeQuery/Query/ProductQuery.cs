@@ -20,6 +20,51 @@ namespace _01_LampshadeQuery.Query
             _discountContext = discountContext;
         }
 
+        public ProductQueryModel? GetDetails(string slug)
+        {
+            var inventory = _inventoryContext.Inventory
+                .Select(x => new
+                {
+                    x.ProductId,
+                    x.UnitPrice
+                }).ToList();
+
+            var discount = _discountContext.CustomerDiscounts.ToList();
+
+            var product = _shopContext.Products
+                .AsNoTracking()
+                .Include(x => x.Category)
+                .Select(x => new ProductQueryModel
+                {
+                    Id = x.Id,
+                    Category = x.Category.Name,
+                    Name = x.Name,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                }).FirstOrDefault(x => x.Slug.Equals(slug));
+
+            if (product == null)
+                return new ProductQueryModel();
+
+            var productInventory = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+            var productDiscount = discount.FirstOrDefault(x => x.ProductId == product.Id && x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now);
+            if (productInventory != null)
+            {
+                product.Price = productInventory.UnitPrice.ToMoney();
+
+                if (productDiscount != null)
+                {
+                    product.DiscountRate = productDiscount.DiscountRate;
+                    product.PriceWithDiscount = (productInventory.UnitPrice - ((productInventory.UnitPrice * product.DiscountRate) / 100)).ToMoney();
+                }
+
+            }
+            product.HasDiscount = product.PriceWithDiscount != null;
+            return product;
+        }
+
         public List<ProductQueryModel> GetLatestArrivals()
         {
             var inventory = _inventoryContext.Inventory

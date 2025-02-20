@@ -31,7 +31,7 @@
                         <!--=======  single slider item  =======-->
                         @foreach (var slide in Model){
                             <div class="single-slider-item">
-                                <div class="hero-slider-item-wrapper" style="background-image: url(~/ProductPicture/@slide.Picture);">
+                                <div class="hero-slider-item-wrapper" style="background-image: url(./ProductPicture/@slide.Picture);">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -41,7 +41,7 @@
                                                     <p class="slider-title slider-title--small">
                                                         @slide.Text
                                                     </p>
-                                                    <a class="hero-slider-button" href="shop-left-sidebar.html">
+                                                    <a class="hero-slider-button" href="@slide.Link">
                                                         @slide.BtnText <i class="ion-ios-plus-empty"></i>
                                                     </a>
                                                 </div>

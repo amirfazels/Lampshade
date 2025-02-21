@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ShopManagement.Application.Contacts.Comment;
 
 namespace ServiceHost.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -14,7 +14,6 @@ namespace ServiceHost.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

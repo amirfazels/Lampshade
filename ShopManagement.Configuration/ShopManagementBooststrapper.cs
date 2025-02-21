@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application;
+using ShopManagement.Application.Contacts.Comment;
 using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
 using ShopManagement.Application.Contacts.ProductPicture;
@@ -36,6 +37,7 @@ namespace ShopManagement.Configuration
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideRepository, SlideRepository>();
 
+            services.AddTransient<ICommentApplication, CommentApplication>();
             services.AddTransient<ICommentRepository, CommentRepository>();
 
             services.AddTransient<ISlideQuery, SlideQuery>();

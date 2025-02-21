@@ -21,7 +21,7 @@ namespace ShopManagement.Domain.CommentAgg
             ProductId = productId;
         }
 
-        public void Calcel()
+        public void Cancel()
         {
             IsCanceled = true;
             IsConfirmed = false;

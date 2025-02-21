@@ -2,7 +2,6 @@
 using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ShopManagement.Application
 {

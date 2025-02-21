@@ -1,8 +1,10 @@
 ﻿using _0_Framework.Application;
 using _01_LampshadeQuery.Contracts.Product;
+using _01_LampshadeQuery.Contracts.ProductPicture;
 using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 
 namespace _01_LampshadeQuery.Query
@@ -35,6 +37,7 @@ namespace _01_LampshadeQuery.Query
             var product = _shopContext.Products
                 .AsNoTracking()
                 .Include(x => x.Category)
+                .Include(x => x.ProductPictures)
                 .Select(x => new ProductQueryModel
                 {
                     Id = x.Id,
@@ -49,7 +52,8 @@ namespace _01_LampshadeQuery.Query
                     Description = x.Description,
                     Keywords = x.Keywords,
                     MetaDescription = x.MetaDescription,
-                    ShortDescription = x.ShortDescription
+                    ShortDescription = x.ShortDescription,
+                    ProductPictures = MapProductPictures(x.ProductPictures)
                 }).FirstOrDefault(x => x.Slug.Equals(slug));
 
             if (product == null)
@@ -72,6 +76,20 @@ namespace _01_LampshadeQuery.Query
             }
             product.HasDiscount = product.PriceWithDiscount != null;
             return product;
+        }
+
+        private List<ProductPictureQueryModel> MapProductPictures(ICollection<ProductPicture> productPictures)
+        {
+            return productPictures
+                .Where(x => !x.IsRemoved)
+                .Select(x => new ProductPictureQueryModel
+                {
+                    ProductId = x.ProductId,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    IsRemove = x.IsRemoved,
+                }).ToList();
         }
 
         public List<ProductQueryModel> GetLatestArrivals()

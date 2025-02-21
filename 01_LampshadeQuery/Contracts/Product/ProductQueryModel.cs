@@ -1,4 +1,6 @@
-﻿namespace _01_LampshadeQuery.Contracts.Product
+﻿using _01_LampshadeQuery.Contracts.ProductPicture;
+
+namespace _01_LampshadeQuery.Contracts.Product
 {
     public class ProductQueryModel
     {
@@ -21,5 +23,6 @@
         public string MetaDescription { get; set; }
         public string Keywords { get; set; }
         public bool IsInStock { get; set; }
+        public List<ProductPictureQueryModel> ProductPictures { get; set; }
     }
 }

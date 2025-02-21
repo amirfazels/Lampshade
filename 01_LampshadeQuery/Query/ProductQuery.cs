@@ -78,7 +78,7 @@ namespace _01_LampshadeQuery.Query
             return product;
         }
 
-        private List<ProductPictureQueryModel> MapProductPictures(ICollection<ProductPicture> productPictures)
+        private static List<ProductPictureQueryModel> MapProductPictures(ICollection<ProductPicture> productPictures)
         {
             return productPictures
                 .Where(x => !x.IsRemoved)

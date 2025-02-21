@@ -10,6 +10,7 @@ using ShopManagement.Application.Contacts.Product;
 using ShopManagement.Application.Contacts.ProductCategory;
 using ShopManagement.Application.Contacts.ProductPicture;
 using ShopManagement.Application.Contacts.Slide;
+using ShopManagement.Domain.CommentAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductCategoryAgg;
 using ShopManagement.Domain.ProductPictureAgg;
@@ -34,6 +35,8 @@ namespace ShopManagement.Configuration
 
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideRepository, SlideRepository>();
+
+            services.AddTransient<ICommentRepository, CommentRepository>();
 
             services.AddTransient<ISlideQuery, SlideQuery>();
             services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();

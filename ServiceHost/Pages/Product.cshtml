@@ -364,7 +364,7 @@
                                                     </div>
                                                     <div class="rating-form-wrapper fix">
                                                         <h3>نظر خود را با ما به اشتراک بگذارید</h3>
-                                                        <form action="#">
+                                                        <form method="post">
                                                             <div class="rating-form row">
                                                                 <div class="col-md-6 col-12 form-group">
                                                                     <label for="name">نام:</label>
@@ -381,9 +381,11 @@
                                                                               placeholder="نظرتان را بنویسید"></textarea>
                                                                 </div>
                                                                 <div class="col-12">
-                                                                    <input value="add review" type="ارسال">
+                                                                    <input value="ارسال" type="submit">
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="productId" value="@Model.Product.Id" />
+                                                            <input type="hidden" name="productSlug" value="@Model.Product.Slug" />
                                                         </form>
                                                     </div>
                                                 </div>

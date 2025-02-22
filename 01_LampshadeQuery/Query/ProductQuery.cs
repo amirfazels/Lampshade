@@ -1,9 +1,11 @@
 ﻿using _0_Framework.Application;
+using _01_LampshadeQuery.Contracts.Comment;
 using _01_LampshadeQuery.Contracts.Product;
 using _01_LampshadeQuery.Contracts.ProductPicture;
 using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.CommentAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 
@@ -37,6 +39,7 @@ namespace _01_LampshadeQuery.Query
             var product = _shopContext.Products
                 .AsNoTracking()
                 .Include(x => x.Category)
+                .Include(x => x.Comments)
                 .Include(x => x.ProductPictures)
                 .Select(x => new ProductQueryModel
                 {
@@ -53,7 +56,8 @@ namespace _01_LampshadeQuery.Query
                     Keywords = x.Keywords,
                     MetaDescription = x.MetaDescription,
                     ShortDescription = x.ShortDescription,
-                    ProductPictures = MapProductPictures(x.ProductPictures)
+                    ProductPictures = MapProductPictures(x.ProductPictures),
+                    Comments = MapComments(x.Comments)
                 }).FirstOrDefault(x => x.Slug.Equals(slug));
 
             if (product == null)
@@ -76,6 +80,21 @@ namespace _01_LampshadeQuery.Query
             }
             product.HasDiscount = product.PriceWithDiscount != null;
             return product;
+        }
+
+        private List<CommentQueryModel> MapComments(List<Comment> comments)
+        {
+            return comments
+                .Where(x=> x.IsConfirmed)
+                .Where(x=> !x.IsCanceled)
+                .Select(x => new CommentQueryModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Message = x.Message,
+                    CreationDate = x.CreationDate.ToFarsi(),
+                })
+                .ToList();
         }
 
         private static List<ProductPictureQueryModel> MapProductPictures(ICollection<ProductPicture> productPictures)

@@ -1,4 +1,5 @@
-﻿using _01_LampshadeQuery.Contracts.ProductPicture;
+﻿using _01_LampshadeQuery.Contracts.Comment;
+using _01_LampshadeQuery.Contracts.ProductPicture;
 
 namespace _01_LampshadeQuery.Contracts.Product
 {
@@ -24,5 +25,6 @@ namespace _01_LampshadeQuery.Contracts.Product
         public string Keywords { get; set; }
         public bool IsInStock { get; set; }
         public List<ProductPictureQueryModel> ProductPictures { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
     }
 }

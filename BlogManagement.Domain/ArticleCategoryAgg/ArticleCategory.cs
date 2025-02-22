@@ -12,5 +12,33 @@ namespace BlogManagement.Domain.ArticleCategoryAgg
         public string Keyword { get; private set; }
         public string MetaDiscription { get; private set; }
         public string CanonicalAddress { get; private set; }
+
+        public ArticleCategory(string name, string picture, string discription,
+            int showOrder, string slug, string keyword,
+            string metaDiscription, string canonicalAddress)
+        {
+            Name = name;
+            Picture = picture;
+            Discription = discription;
+            ShowOrder = showOrder;
+            Slug = slug;
+            Keyword = keyword;
+            MetaDiscription = metaDiscription;
+            CanonicalAddress = canonicalAddress;
+        }
+        public void Edit(string name, string picture, string discription,
+            int showOrder, string slug, string keyword,
+            string metaDiscription, string canonicalAddress)
+        {
+            Name = name;
+            if (string.IsNullOrWhiteSpace(picture)) 
+                Picture = picture;
+            Discription = discription;
+            ShowOrder = showOrder;
+            Slug = slug;
+            Keyword = keyword;
+            MetaDiscription = metaDiscription;
+            CanonicalAddress = canonicalAddress;
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace _01_LampshadeQuery.Query
             return product;
         }
 
-        private List<CommentQueryModel> MapComments(List<Comment> comments)
+        private static List<CommentQueryModel> MapComments(List<Comment> comments)
         {
             return comments
                 .Where(x=> x.IsConfirmed)
@@ -94,6 +94,7 @@ namespace _01_LampshadeQuery.Query
                     Message = x.Message,
                     CreationDate = x.CreationDate.ToFarsi(),
                 })
+                .OrderByDescending(x=> x.Id)
                 .ToList();
         }
 

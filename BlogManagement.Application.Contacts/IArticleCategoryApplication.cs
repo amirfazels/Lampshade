@@ -6,6 +6,7 @@ namespace BlogManagement.Application.Contacts
     {
         OperationResult Create(CreateArticleCategory command);
         OperationResult Edit(EditArticleCategory command);
-        OperationResult Search(ArticleCategorySearchModel command);
+        EditArticleCategory GetDetails(long id);
+        List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel command);
     }
 }

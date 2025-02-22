@@ -136,7 +136,7 @@
                                             </span>
 
                                             <span class="review-count">
-                                                <a href="#">(2 نظر)</a> | <a href="#">نظر خود را با ما به اشتراک بگذارید</a>
+                                                <a href="#">(@Model.Product.Comments.Count نظر)</a> | <a href="#">نظر خود را با ما به اشتراک بگذارید</a>
                                             </span>
                                         </div>
 
@@ -254,113 +254,19 @@
                                                         <h4>4.5 <span>(میانگین)</span></h4>
                                                         <span>بر اساس 9 نظر</span>
                                                     </div>
-                                                    <div class="rating-list">
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(3)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(1)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="ratings-wrapper">
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Cristopher Lee</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
+                                                        @foreach (var comment in Model.Product.Comments)
+                                                        {
+                                                            <div class="sin-ratings">
+                                                                <div class="rating-author">
+                                                                    <h3>@comment.Name</h3>
                                                                 </div>
+                                                                <p>
+                                                                    @comment.Message
+                                                                </p>
                                                             </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Rashed Mahmud</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Hasan Mubarak</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
-
+                                                        }
                                                     </div>
                                                     <div class="rating-form-wrapper fix">
                                                         <h3>نظر خود را با ما به اشتراک بگذارید</h3>

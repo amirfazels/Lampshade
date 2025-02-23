@@ -1,5 +1,5 @@
 ﻿using _0_Framework.Application;
-using BlogManagement.Application.Contacts;
+using BlogManagement.Application.Contacts.ArticleCategory;
 using BlogManagement.Domain.ArticleCategoryAgg;
 
 namespace BlogManagement.Application
@@ -27,6 +27,8 @@ namespace BlogManagement.Application
             var articleCategory = new ArticleCategory(
                 command.Name,
                 PicturePath, 
+                command.PictureAlt,
+                command.PictureTitle,
                 command.Discription,
                 command.ShowOrder,
                 slug,
@@ -57,6 +59,8 @@ namespace BlogManagement.Application
             articleCategory.Edit(
                 command.Name,
                 PicturePath,
+                command.PictureAlt,
+                command.PictureTitle,
                 command.Discription,
                 command.ShowOrder,
                 command.Slug,

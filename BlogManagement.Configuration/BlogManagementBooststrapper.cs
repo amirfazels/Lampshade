@@ -1,5 +1,5 @@
 ﻿using BlogManagement.Application;
-using BlogManagement.Application.Contacts;
+using BlogManagement.Application.Contacts.ArticleCategory;
 using BlogManagement.Domain.ArticleCategoryAgg;
 using BlogManagement.Infrastructure.EFCore;
 using BlogManagement.Infrastructure.EFCore.Repository;

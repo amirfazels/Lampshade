@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Application;
 
-namespace BlogManagement.Application.Contacts
+namespace BlogManagement.Application.Contacts.ArticleCategory
 {
     public interface IArticleCategoryApplication
     {

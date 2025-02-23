@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace BlogManagement.Application.Contacts
+namespace BlogManagement.Application.Contacts.ArticleCategory
 {
     public class ArticleCategoryViewModel
     {
@@ -9,5 +9,7 @@ namespace BlogManagement.Application.Contacts
         public string Picture { get; set; }
         public string Discription { get; set; }
         public int ShowOrder { get; set; }
+        public string CreationDate { get; set; }
+        public long ArticlesCount { get; set; }
     }
 }

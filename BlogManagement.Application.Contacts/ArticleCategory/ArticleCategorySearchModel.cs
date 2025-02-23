@@ -1,4 +1,4 @@
-﻿namespace BlogManagement.Application.Contacts
+﻿namespace BlogManagement.Application.Contacts.ArticleCategory
 {
     public class ArticleCategorySearchModel
     {

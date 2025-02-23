@@ -1,6 +1,7 @@
-﻿using _0_Framework.Domain;
+﻿using _0_Framework.Application;
+using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
-using BlogManagement.Application.Contacts;
+using BlogManagement.Application.Contacts.ArticleCategory;
 using BlogManagement.Domain.ArticleCategoryAgg;
 using System.Linq.Expressions;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
@@ -38,9 +39,12 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
             {
                 Id = x.Id,
                 Name = x.Name,
-                Discription = x.Discription,
                 Picture = x.Picture,
+                Discription = x.Discription,
                 ShowOrder = x.ShowOrder,
+                CreationDate = x.CreationDate.ToFarsi(),
+                ArticlesCount = 0,
+                
             });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

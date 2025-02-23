@@ -18,7 +18,7 @@ namespace BlogManagement.Application.Contacts.ArticleCategory
         public string PictureTitle { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string Discription { get; set; }
+        public string Description { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
         public int ShowOrder { get; set; }
@@ -27,10 +27,10 @@ namespace BlogManagement.Application.Contacts.ArticleCategory
         public string Slug { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string Keyword { get; set; }
+        public string Keywords { get; set; }
 
         [Required(ErrorMessage = ValidationMessage.IsRequired)]
-        public string MetaDiscription { get; set; }
+        public string MetaDescription { get; set; }
 
         public string CanonicalAddress { get; set; }
     }

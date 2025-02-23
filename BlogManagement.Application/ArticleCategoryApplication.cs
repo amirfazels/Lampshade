@@ -29,11 +29,11 @@ namespace BlogManagement.Application
                 PicturePath, 
                 command.PictureAlt,
                 command.PictureTitle,
-                command.Discription,
+                command.Description,
                 command.ShowOrder,
                 slug,
-                command.Keyword,
-                command.MetaDiscription,
+                command.Keywords,
+                command.MetaDescription,
                 command.CanonicalAddress
                 );
 
@@ -61,11 +61,11 @@ namespace BlogManagement.Application
                 PicturePath,
                 command.PictureAlt,
                 command.PictureTitle,
-                command.Discription,
+                command.Description,
                 command.ShowOrder,
                 command.Slug,
-                command.Keyword,
-                command.MetaDiscription,
+                command.Keywords,
+                command.MetaDescription,
                 command.CanonicalAddress
                 );
             _articleCategoryRepository.SaveChanges();

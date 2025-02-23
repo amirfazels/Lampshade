@@ -23,12 +23,14 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
             {
                 Id = id,
                 Name = x.Name,
-                Discription = x.Discription,
+                Description = x.Discription,
                 ShowOrder = x.ShowOrder,
                 Slug = x.Slug,
-                Keyword = x.Keyword,
-                MetaDiscription = x.MetaDiscription,
+                Keywords = x.Keyword,
+                MetaDescription = x.MetaDiscription,
                 CanonicalAddress = x.CanonicalAddress,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
 
             }).FirstOrDefault(x => x.Id == id);
         }

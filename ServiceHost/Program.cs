@@ -1,6 +1,7 @@
 using ShopManagement.Configuration;
 using DiscountManagement.Configuration;
 using InventoryManagement.Configuration;
+using BlogManagement.Configuration;
 using _0_Framework.Application;
 
 namespace ServiceHost
@@ -14,6 +15,7 @@ namespace ServiceHost
             builder.Services.AddShopManagementServices(builder.Configuration);
             builder.Services.AddDiscountManagementServices(builder.Configuration);
             builder.Services.AddInventoryManagementServices(builder.Configuration);
+            builder.Services.AddBlogManagementServices(builder.Configuration);
             
             builder.Services.AddTransient<IFileUploader, FileUploader>();
             

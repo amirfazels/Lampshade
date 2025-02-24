@@ -30,7 +30,7 @@ namespace BlogManagement.Application
 
         public List<ArticleViewModel> Search(ArticleSearchModel searchModel)
         {
-            throw new NotImplementedException();
+            return _articleRepository.Search(searchModel);
         }
     }
 }

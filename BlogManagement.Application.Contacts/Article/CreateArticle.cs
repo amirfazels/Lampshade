@@ -1,11 +1,13 @@
-﻿namespace BlogManagement.Application.Contacts.Article
+﻿using Microsoft.AspNetCore.Http;
+
+namespace BlogManagement.Application.Contacts.Article
 {
     public class CreateArticle
     {
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-        public string Pictrue { get; set; }
+        public IFormFile Pictrue { get; set; }
         public string PictrueAlt { get; set; }
         public string PictrueTitle { get; set; }
         public string Slug { get; set; }

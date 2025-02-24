@@ -35,6 +35,11 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public string? GetSlugById(long id)
+        {
+            return _blogContext.ArticleCategories.FirstOrDefault(x => x.Id == id).Slug;
+        }
+
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {
             var query = _blogContext.ArticleCategories.Select(x => new ArticleCategoryViewModel

@@ -14,7 +14,7 @@ namespace BlogManagement.Application.Contacts.Article
         public string Keywords { get; set; }
         public string MetaDescription { get; set; }
         public string CanonicalAddress { get; set; }
-        public DateTime PublishDate { get; set; }
+        public string PublishDate { get; set; }
         public long CategoryId { get; set; }
     }
 }

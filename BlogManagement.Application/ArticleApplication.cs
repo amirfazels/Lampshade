@@ -25,7 +25,7 @@ namespace BlogManagement.Application
 
         public EditArticle GetDetails(long id)
         {
-            throw new NotImplementedException();
+            return _articleRepository.GetDetails(id);
         }
 
         public List<ArticleViewModel> Search(ArticleSearchModel searchModel)

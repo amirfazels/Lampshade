@@ -26,7 +26,6 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 Description = x.Description,
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
-                Pictrue = x.Pictrue,
                 PictrueAlt = x.PictrueAlt,
                 PictrueTitle = x.PictrueTitle,
                 PublishDate = x.PublishDate,
@@ -34,6 +33,13 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 Slug = x.Slug,
                 Title = x.Title,
             }).FirstOrDefault(x => x.Id == id);
+        }
+
+        public Article GetWithCategory(long id)
+        {
+            return _blogContext.Articles
+                .Include(x => x.Category)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public List<ArticleViewModel> Search(ArticleSearchModel searchModel)

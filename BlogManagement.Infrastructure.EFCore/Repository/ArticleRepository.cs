@@ -28,7 +28,7 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 MetaDescription = x.MetaDescription,
                 PictrueAlt = x.PictrueAlt,
                 PictrueTitle = x.PictrueTitle,
-                PublishDate = x.PublishDate,
+                PublishDate = x.PublishDate.ToFarsi(),
                 ShortDescription = x.ShortDescription,
                 Slug = x.Slug,
                 Title = x.Title,

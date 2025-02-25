@@ -1,7 +1,6 @@
 using BlogManagement.Application.Contacts.ArticleCategory;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contacts.ProductCategory;
 
 namespace ServiceHost.Areas.Administration.Pages.Blog.ArticleCategories
 {

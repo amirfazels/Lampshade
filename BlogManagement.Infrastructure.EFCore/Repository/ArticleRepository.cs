@@ -49,7 +49,7 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Title = x.Title,
                 ShortDescription = x.ShortDescription,
-                Pictrue = x.Pictrue,
+                Picture = x.Pictrue,
                 PublishDate = x.PublishDate.ToFarsi(),
                 Category = x.Category.Name
             });

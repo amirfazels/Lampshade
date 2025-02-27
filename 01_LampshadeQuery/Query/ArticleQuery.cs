@@ -1,5 +1,7 @@
-﻿using _01_LampshadeQuery.Contracts.Article;
+﻿using _0_Framework.Application;
+using _01_LampshadeQuery.Contracts.Article;
 using BlogManagement.Infrastructure.EFCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace _01_LampshadeQuery.Query
 {
@@ -19,7 +21,26 @@ namespace _01_LampshadeQuery.Query
 
         public List<ArticleQueryModel> GetLatestArticles()
         {
-            throw new NotImplementedException();
+            return _blogContext.Articles
+                .Include(x => x.Category)
+                .Where(x => x.PublishDate <= DateTime.Now)
+                .Select(x => new ArticleQueryModel
+                {
+                    Title = x.Title,
+                    ShortDescription = x.ShortDescription,
+                    Picture = x.Pictrue,
+                    PictureAlt = x.PictrueAlt,
+                    PictureTitle = x.PictrueTitle,
+                    PublishDate = x.PublishDate.ToFarsi(),
+                    Slug = x.Slug,
+                    Keywords = x.Keywords,
+                    MetaDescription = x.MetaDescription,
+                    CanonicalAddress = x.CanonicalAddress,
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.Category.Name,
+                    CategorySlug = x.Category.Slug,
+                    Description = x.Description,
+                }).ToList();
         }
 
         public List<ArticleQueryModel> Search(string value)

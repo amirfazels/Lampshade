@@ -2,7 +2,7 @@
 {
     public interface IArticleQuery
     {
-        ArticleQueryModel GetArticleDetails(string slug);
+        ArticleQueryModel? GetArticleDetails(string slug);
         List<ArticleQueryModel> GetLatestArticles();
         List<ArticleQueryModel> Search(string value);
     }

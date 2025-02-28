@@ -14,12 +14,7 @@ namespace _01_LampshadeQuery.Query
             _blogContext = blogContext;
         }
 
-        public ArticleQueryModel GetArticleDetails(string slug)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ArticleQueryModel> GetLatestArticles()
+        public ArticleQueryModel? GetArticleDetails(string slug)
         {
             return _blogContext.Articles
                 .Include(x => x.Category)
@@ -40,6 +35,23 @@ namespace _01_LampshadeQuery.Query
                     CategoryName = x.Category.Name,
                     CategorySlug = x.Category.Slug,
                     Description = x.Description,
+                }).FirstOrDefault(x => x.Slug == slug);
+        }
+
+        public List<ArticleQueryModel> GetLatestArticles()
+        {
+            return _blogContext.Articles
+                .Include(x => x.Category)
+                .Where(x => x.PublishDate <= DateTime.Now)
+                .Select(x => new ArticleQueryModel
+                {
+                    Title = x.Title,
+                    Slug = x.Slug,
+                    Picture = x.Pictrue,
+                    PictureAlt = x.PictrueAlt,
+                    PictureTitle = x.PictrueTitle,
+                    PublishDate = x.PublishDate.ToFarsi(),
+                    ShortDescription = x.ShortDescription,
                 }).ToList();
         }
 

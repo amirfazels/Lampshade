@@ -1,4 +1,5 @@
 using _01_LampshadeQuery.Contracts.Article;
+using _01_LampshadeQuery.Contracts.ArticleCategory;
 using _01_LampshadeQuery.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,16 +9,22 @@ namespace ServiceHost.Pages
     public class ArticleModel : PageModel
     {
         public ArticleQueryModel? Article;
-        private readonly ArticleQuery _articleQuery;
+        public List<ArticleQueryModel> LatestArticles;
+        public List<ArticleCategoryQueryModel> ArticleCategories;
+        private readonly IArticleQuery _articleQuery;
+        private readonly IArticleCategoryQuery _articleCategoryQuery;
 
-        public ArticleModel(ArticleQuery articleQuery)
+        public ArticleModel(IArticleQuery articleQuery, IArticleCategoryQuery articleCategoryQuery)
         {
             _articleQuery = articleQuery;
+            _articleCategoryQuery = articleCategoryQuery;
         }
 
         public void OnGet(string id)
         {
             Article = _articleQuery.GetArticleDetails(id);
+            LatestArticles = _articleQuery.GetLatestArticles();
+            ArticleCategories = _articleCategoryQuery.GetArticleCategories();
         }
     }
 }

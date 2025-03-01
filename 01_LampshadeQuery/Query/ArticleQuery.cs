@@ -23,9 +23,9 @@ namespace _01_LampshadeQuery.Query
                 {
                     Title = x.Title,
                     ShortDescription = x.ShortDescription,
-                    Picture = x.Pictrue,
-                    PictureAlt = x.PictrueAlt,
-                    PictureTitle = x.PictrueTitle,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
                     PublishDate = x.PublishDate.ToFarsi(),
                     Slug = x.Slug,
                     Keywords = x.Keywords,
@@ -49,9 +49,9 @@ namespace _01_LampshadeQuery.Query
                 {
                     Title = x.Title,
                     Slug = x.Slug,
-                    Picture = x.Pictrue,
-                    PictureAlt = x.PictrueAlt,
-                    PictureTitle = x.PictrueTitle,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
                     PublishDate = x.PublishDate.ToFarsi(),
                     ShortDescription = x.ShortDescription,
                 }).ToList();

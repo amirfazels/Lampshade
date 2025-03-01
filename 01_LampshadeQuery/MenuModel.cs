@@ -5,7 +5,7 @@ namespace _01_LampshadeQuery
 {
     public class MenuModel
     {
-        public List<ArticleCategoryQueryModel> ArticleCategories { get; set; }
-        public List<ProductCategoryQueryModel> ProductCategories { get; set; }
+        public ICollection<ArticleCategoryQueryModel> ArticleCategories { get; set; }
+        public ICollection<ProductCategoryQueryModel> ProductCategories { get; set; }
     }
 }

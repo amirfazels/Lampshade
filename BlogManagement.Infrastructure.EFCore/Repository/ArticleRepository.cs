@@ -26,8 +26,8 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 Description = x.Description,
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
-                PictrueAlt = x.PictrueAlt,
-                PictrueTitle = x.PictrueTitle,
+                PictrueAlt = x.PictureAlt,
+                PictrueTitle = x.PictureTitle,
                 PublishDate = x.PublishDate.ToFarsi(),
                 ShortDescription = x.ShortDescription,
                 Slug = x.Slug,
@@ -49,7 +49,7 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Title = x.Title,
                 ShortDescription = x.ShortDescription.Substring(0, Math.Min(x.ShortDescription.Length, 50)) + "...",
-                Picture = x.Pictrue,
+                Picture = x.Picture,
                 PublishDate = x.PublishDate.ToFarsi(),
                 Category = x.Category.Name
             });

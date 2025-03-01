@@ -13,9 +13,9 @@ namespace BlogManagement.Infrastructure.EFCore.Mapping
 
             builder.Property(x => x.Title).HasMaxLength(500);
             builder.Property(x => x.ShortDescription).HasMaxLength(1000);
-            builder.Property(x => x.Pictrue).HasMaxLength(500);
-            builder.Property(x => x.PictrueAlt).HasMaxLength(500);
-            builder.Property(x => x.PictrueTitle).HasMaxLength(500);
+            builder.Property(x => x.Picture).HasMaxLength(500);
+            builder.Property(x => x.PictureAlt).HasMaxLength(500);
+            builder.Property(x => x.PictureTitle).HasMaxLength(500);
             builder.Property(x => x.Slug).HasMaxLength(600);
             builder.Property(x => x.Keywords).HasMaxLength(100);
             builder.Property(x => x.MetaDescription).HasMaxLength(150);

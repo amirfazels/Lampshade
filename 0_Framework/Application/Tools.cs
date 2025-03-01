@@ -105,29 +105,22 @@ namespace _0_Framework.Application
             return myMoney.ToString("N0", CultureInfo.CreateSpecificCulture("fa-ir"));
         }
 
-        public static string ToPersianMonthName(this int monthNumber)
-        {
-            string[] persianMonths = new string[]
-            {
-                "فروردین",
-                "اردیبهشت",
-                "خرداد",
-                "تیر",
-                "مرداد",
-                "شهریور",
-                "مهر",
-                "آبان",
-                "آذر",
-                "دی",
-                "بهمن",
-                "اسفند"
-            };
-
-            if (monthNumber < 1 || monthNumber > 12)
-                return "??????";
-
-            return persianMonths[monthNumber - 1];
-        }
+        public static string ToPersianMonthName(this int monthNumber) => monthNumber switch
+         {
+             1 => "فروردین",
+             2 => "اردیبهشت",
+             3 => "خرداد",
+             4 => "تیر",
+             5 => "مرداد",
+             6 => "شهریور",
+             7 => "مهر",
+             8 => "آبان",
+             9 => "آذر",
+             10 => "دی",
+             11 => "بهمن",
+             12 => "اسفند",
+             _ => "نامعتبر"
+         };
 
         public static string ToFileName(this DateTime date)
         {

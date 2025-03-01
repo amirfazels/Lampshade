@@ -3,6 +3,7 @@ using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
 using BlogManagement.Application.Contacts.ArticleCategory;
 using BlogManagement.Domain.ArticleCategoryAgg;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
@@ -51,17 +52,19 @@ namespace BlogManagement.Infrastructure.EFCore.Repository
 
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {
-            var query = _blogContext.ArticleCategories.Select(x => new ArticleCategoryViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Picture = x.Picture,
-                Discription = x.Discription,
-                ShowOrder = x.ShowOrder,
-                CreationDate = x.CreationDate.ToFarsi(),
-                ArticlesCount = 0,
+            var query = _blogContext.ArticleCategories
+                .Include(x => x.Articles)
+                .Select(x => new ArticleCategoryViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Picture = x.Picture,
+                    Discription = x.Discription,
+                    ShowOrder = x.ShowOrder,
+                    CreationDate = x.CreationDate.ToFarsi(),
+                    ArticlesCount = x.Articles.Count,
                 
-            });
+                });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
                 query = query.Where(x => x.Name.Contains(searchModel.Name));

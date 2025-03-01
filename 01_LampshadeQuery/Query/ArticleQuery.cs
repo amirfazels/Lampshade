@@ -16,7 +16,7 @@ namespace _01_LampshadeQuery.Query
 
         public ArticleQueryModel? GetArticleDetails(string slug)
         {
-            return _blogContext.Articles
+            var article =  _blogContext.Articles
                 .Include(x => x.Category)
                 .Where(x => x.PublishDate <= DateTime.Now)
                 .Select(x => new ArticleQueryModel
@@ -36,6 +36,8 @@ namespace _01_LampshadeQuery.Query
                     CategorySlug = x.Category.Slug,
                     Description = x.Description,
                 }).FirstOrDefault(x => x.Slug == slug);
+            article.KeywordList = article.Keywords?.Split(",").ToList();
+            return article;
         }
 
         public List<ArticleQueryModel> GetLatestArticles()

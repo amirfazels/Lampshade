@@ -3,6 +3,8 @@ using DiscountManagement.Configuration;
 using InventoryManagement.Configuration;
 using BlogManagement.Configuration;
 using _0_Framework.Application;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace ServiceHost
 {
@@ -19,6 +21,8 @@ namespace ServiceHost
             
             builder.Services.AddTransient<IFileUploader, FileUploader>();
             
+            builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
+
             // Add services to the container.
             builder.Services.AddRazorPages();
 

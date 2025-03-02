@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string title = "فروشگاه لامپ شیدا";
+    if (ViewData["Title"] != null)
+        title = $"{title} - {ViewData["Title"].ToString()}";
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@ViewData["MetaDescription"]" />
+    <meta name="keywords" content="@ViewData["Keywords"]"/>
+    <title>@title</title>
 
     <!-- Vendor CSS -->
     <link href="~/Theme/assets/css/vendors.css" rel="stylesheet">

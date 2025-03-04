@@ -31,7 +31,8 @@ namespace _01_LampshadeQuery.Query
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
-                Slug = x.Slug
+                Slug = x.Slug,
+                Keywords = x.Keywords
             }).ToList();
         }
 
@@ -127,6 +128,7 @@ namespace _01_LampshadeQuery.Query
                     PictureTitle = x.PictureTitle,
                     Slug = x.Slug,
                     Products = MapProducts(x.Products),
+                    Keywords = x.Keywords
                 }).FirstOrDefault(x => x.Slug == slug);
 
             foreach (var product in category.Products) 

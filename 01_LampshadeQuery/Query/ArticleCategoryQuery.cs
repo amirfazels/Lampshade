@@ -35,6 +35,7 @@ namespace _01_LampshadeQuery.Query
         {
             var articleCategory =  _blogContext.ArticleCategories
                 .Include(x => x.Articles)
+                .ThenInclude(x => x.Category)
                 .Select(x => new ArticleCategoryQueryModel
                 {
                     Name = x.Name,
@@ -48,8 +49,7 @@ namespace _01_LampshadeQuery.Query
                     Articles = MapArticles(x.Articles),
                     ArticlesCount = x.Articles.Count,
                 }).FirstOrDefault(x => x.Slug == slug);
-            if (string.IsNullOrWhiteSpace(articleCategory.Keywords))
-                articleCategory.KeywordList = articleCategory.Keywords?.Split(',').ToList();
+            articleCategory.KeywordList = articleCategory.Keywords?.Split(',').ToList();
             return articleCategory;
         }
 

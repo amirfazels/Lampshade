@@ -1,6 +1,6 @@
+using CommentManagement.Application.Contracts.Comment;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contacts.Comment;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Comments
 {

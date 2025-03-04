@@ -2,10 +2,10 @@
 using _01_LampshadeQuery.Contracts.Comment;
 using _01_LampshadeQuery.Contracts.Product;
 using _01_LampshadeQuery.Contracts.ProductPicture;
+using CommentManagement.Domain.CommentAgg;
 using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Domain.CommentAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 
@@ -39,7 +39,6 @@ namespace _01_LampshadeQuery.Query
             var product = _shopContext.Products
                 .AsNoTracking()
                 .Include(x => x.Category)
-                .Include(x => x.Comments)
                 .Include(x => x.ProductPictures)
                 .Select(x => new ProductQueryModel
                 {
@@ -57,7 +56,7 @@ namespace _01_LampshadeQuery.Query
                     MetaDescription = x.MetaDescription,
                     ShortDescription = x.ShortDescription,
                     ProductPictures = MapProductPictures(x.ProductPictures),
-                    Comments = MapComments(x.Comments)
+                    //Comments = MapComments(x.Comments)
                 }).FirstOrDefault(x => x.Slug.Equals(slug));
 
             if (product == null)

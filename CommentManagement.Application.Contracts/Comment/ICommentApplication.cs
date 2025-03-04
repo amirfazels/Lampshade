@@ -1,7 +1,6 @@
 ﻿using _0_Framework.Application;
-using _0_Framework.Domain;
 
-namespace ShopManagement.Application.Contacts.Comment
+namespace CommentManagement.Application.Contracts.Comment
 {
     public interface ICommentApplication
     {

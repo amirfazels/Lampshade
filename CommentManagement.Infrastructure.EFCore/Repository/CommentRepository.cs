@@ -19,7 +19,6 @@ namespace CommentManagement.Infrastructure.EFCore.Repository
                 Id = x.Id,
                 Name = x.Name,
                 Email = x.Email,
-                Website = x.Website,
                 Message = x.Message,
                 OwnerRecordId = x.OwnerRecordId,
                 Type = x.Type,

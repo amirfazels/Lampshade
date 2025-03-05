@@ -21,6 +21,7 @@ namespace _01_LampshadeQuery.Query
                 .Where(x => x.PublishDate <= DateTime.Now)
                 .Select(x => new ArticleQueryModel
                 {
+                    Id = x.Id,
                     Title = x.Title,
                     ShortDescription = x.ShortDescription,
                     Picture = x.Picture,

@@ -234,49 +234,52 @@
                                         <!--=======  comment form container  =======-->
 
                                         <div class="comment-form-container">
-                                            <h3 class="comment-form-title">LEAVE A REPLY</h3>
+                                            <h3 class="comment-form-title">نظر خود را به اشتراک بگذارید</h3>
                                             <p>
-                                                Your email address will not be published. Required fields are marked
                                                 *
+                                                آدرس ایمیل شما منتشر نخواهد شد. فیلدهای الزامی مشخص شده اند
                                             </p>
 
                                             <!--=======  comment form  =======-->
 
                                             <div class="comment-form">
-                                                <form action="#">
+                                                <form method="post">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
-                                                                <label>Comment</label>
-                                                                <textarea name="commentMessage"
-                                                                          id="commentMessage"></textarea>
+                                                                <label>نظر خود را بنویسید</label>
+                                                                <textarea name="message"
+                                                                          id="message"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
-                                                                <label>Name <span class="required">*</span></label>
-                                                                <input type="text" name="commenterName">
+                                                                <label>نام <span class="required">*</span></label>
+                                                                <input type="text" name="name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
-                                                                <label>Email <span class="required">*</span></label>
-                                                                <input type="text" name="commenterEmail">
+                                                                <label>ایمیل <span class="required">*</span></label>
+                                                                <input type="text" name="email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
-                                                                <label>Website</label>
-                                                                <input type="text" name="commenterWebsite">
+                                                                <label>وبسایت</label>
+                                                                <input type="text" name="website">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <button type="submit" class="comment-btn"
                                                                     name="submit">
-                                                                post comment
+                                                                ارسال
                                                             </button>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="OwnerRecordId" value="@Model.Article.Id" />
+                                                    <input type="hidden" name="ArticleSlug" value="@Model.Article.Slug" />
+                                                    <input type="hidden" name="ParentId" name="commentParentId" value="" />
                                                 </form>
                                             </div>
 

@@ -140,94 +140,68 @@
                                     =============================================-->
 
                                     <div class="comment-section">
-                                        <h3 class="comment-counter">4 نظر گذاشته شده</h3>
+                                        <h3 class="comment-counter">@Model.Article.Comments.Count نظر گذاشته شده</h3>
 
                                         <!--=======  comment container  =======-->
 
                                         <div class="comment-container">
                                             <!--=======  single comment  =======-->
+                                            @foreach (var comment in Model.Article.Comments)
+                                            {
+                                                <div class="single-comment">
+                                                    <span class="reply-btn">
+                                                            <a href="#CommentForm" onclick="$('#commentParentId').val(@comment.Id)">پاسخ</a>
+                                                    </span>
 
-                                            <div class="single-comment">
-                                                <span class="reply-btn">
-                                                    <a href="#">Reply</a>
-                                                </span>
+                                                    <div class="image">
+                                                        <img src="assets/img/blog/comment-icon.png" alt="Default Avatar" />
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="user">
+                                                            @comment.Name 
+                                                            <span class="comment-time">
+                                                                @comment.CreationDate
+                                                            </span>
+                                                        </h3>
+                                                        <p class="comment-text">
+                                                            @comment.Message
+                                                        </p>
+                                                    </div>
 
-                                                <div class="image">
-                                                    <img src="assets/img/blog/comment-icon.png" alt="">
                                                 </div>
-                                                <div class="content">
-                                                    <h3 class="user">
-                                                        admin <span class="comment-time">
-                                                            April 28, 2019
-                                                            at 3:09 am
-                                                        </span>
-                                                    </h3>
-                                                    <p class="comment-text">
-                                                        Lorem ipsum dolor sit amet consectetur
-                                                        adipisicing elit. Sint quia rem dolorem et rerum est
-                                                        laudantium eum dolores omnis perspiciatis.
-                                                    </p>
-                                                </div>
-
-                                            </div>
 
                                             <!--=======  End of single comment  =======-->
                                             <!--=======  single reply comment  =======-->
+                                                @if (comment.Children.Count > 0)
+                                                {
+                                                    @foreach (var reply in comment.Children)
+                                                    {
+                                                        <div class="single-comment reply-comment">
+                                                            <span class="reply-btn">
+                                                                <a href="#">پاسخ</a>
+                                                            </span>
 
-                                            <div class="single-comment reply-comment">
-                                                <span class="reply-btn">
-                                                    <a href="#">Reply</a>
-                                                </span>
+                                                            <div class="image">
+                                                                <img src="assets/img/blog/comment-icon.png" alt="">
+                                                            </div>
+                                                            <div class="content">
+                                                                <h3 class="user">
+                                                                    @reply.Name
+                                                                    <span class="comment-time">
+                                                                        @reply.CreationDate
+                                                                    </span>
+                                                                </h3>
+                                                                <p class="comment-text">
+                                                                    @reply.Message
+                                                                </p>
+                                                            </div>
 
-                                                <div class="image">
-                                                    <img src="assets/img/blog/comment-icon.png" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="user">
-                                                        admin <span class="comment-time">
-                                                            April 28, 2019
-                                                            at 3:09 am
-                                                        </span>
-                                                    </h3>
-                                                    <p class="comment-text">
-                                                        Lorem ipsum dolor sit amet consectetur
-                                                        adipisicing elit. Sint quia rem dolorem et rerum est
-                                                        laudantium eum dolores omnis perspiciatis.
-                                                    </p>
-                                                </div>
-
-                                            </div>
-
+                                                        </div>
+                                                    }
+                                                }
+                                            }
                                             <!--=======  End of single reply comment  =======-->
-                                            <!--=======  single comment  =======-->
-
-                                            <div class="single-comment">
-                                                <span class="reply-btn">
-                                                    <a href="#">Reply</a>
-                                                </span>
-
-                                                <div class="image">
-                                                    <img src="assets/img/blog/comment-icon.png" alt="">
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="user">
-                                                        admin <span class="comment-time">
-                                                            April 28, 2019
-                                                            at 3:09 am
-                                                        </span>
-                                                    </h3>
-                                                    <p class="comment-text">
-                                                        Lorem ipsum dolor sit amet consectetur
-                                                        adipisicing elit. Sint quia rem dolorem et rerum est
-                                                        laudantium eum dolores omnis perspiciatis.
-                                                    </p>
-                                                </div>
-
-                                            </div>
-
-                                            <!--=======  End of single comment  =======-->
-
-
+                                            
                                         </div>
 
                                         <!--=======  End of comment container  =======-->
@@ -243,7 +217,7 @@
                                             <!--=======  comment form  =======-->
 
                                             <div class="comment-form">
-                                                <form method="post">
+                                                <form method="post" id="CommentForm">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="form-group">
@@ -279,7 +253,7 @@
                                                     </div>
                                                     <input type="hidden" name="OwnerRecordId" value="@Model.Article.Id" />
                                                     <input type="hidden" name="ArticleSlug" value="@Model.Article.Slug" />
-                                                    <input type="hidden" name="ParentId" name="commentParentId" value="" />
+                                                    <input type="hidden" name="ParentId" id="commentParentId" value="" />
                                                 </form>
                                             </div>
 

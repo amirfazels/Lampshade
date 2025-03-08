@@ -23,6 +23,7 @@ namespace ServiceHost
             
             builder.Services.AddTransient<IFileUploader, FileUploader>();
             
+            builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
             // Add services to the container.

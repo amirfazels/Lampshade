@@ -5,7 +5,7 @@ namespace AccountManagement.Infrastructure.EFCore
 {
     public class AccountContext : DbContext
     {
-        DbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public AccountContext(DbContextOptions<AccountContext> options) : base(options) { }
 

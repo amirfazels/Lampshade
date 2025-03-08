@@ -1,3 +1,4 @@
+using AccountManagement.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using ShopManagement.Configuration;
 using DiscountManagement.Configuration;
@@ -20,6 +21,7 @@ namespace ServiceHost
             builder.Services.AddInventoryManagementServices(builder.Configuration);
             builder.Services.AddBlogManagementServices(builder.Configuration);
             builder.Services.AddCommentManagementServices(builder.Configuration);
+            builder.Services.AddAccountManagementServices(builder.Configuration);
             
             builder.Services.AddTransient<IFileUploader, FileUploader>();
             

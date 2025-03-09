@@ -24,12 +24,11 @@ namespace AccountManagement.Domain.AccountAgg
                 ProfilePhoto = profilePhoto;
         }
 
-        public void Edit(string fullName, string username, string password,
+        public void Edit(string fullName, string username,
             string mobile, long roleId, string profilePhoto)
         {
             FullName = fullName;
             Username = username;
-            Password = password;
             Mobile = mobile;
             RoleId = roleId;
             if (!string.IsNullOrWhiteSpace(profilePhoto))

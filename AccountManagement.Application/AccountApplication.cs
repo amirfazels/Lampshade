@@ -68,16 +68,14 @@ namespace AccountManagement.Application
             if (account == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            if (_accountRepository.Exists(x => x.Username == command.Username || x.Mobile == command.Mobile && x.Id != command.Id))
+            if (_accountRepository.Exists(x => (x.Username == command.Username || x.Mobile == command.Mobile) && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             var path = _fileUploader.Upload(command.ProfilePhoto, "ProfilePhotos");
-            var password = _passwordHasher.Hash(command.Password);
 
             account.Edit(
                 command.FullName,
                 command.Username,
-                password,
                 command.Mobile,
                 command.RoleId,
                 path

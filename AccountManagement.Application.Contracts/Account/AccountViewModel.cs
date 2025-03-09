@@ -8,6 +8,7 @@
         public string Mobile { get; set; }
         public string Role { get; set; }
         public string ProfilePhoto { get; set; }
-        public int RoleId { get; set; }
+        public long RoleId { get; set; }
+        public string CreationDate { get; set; }
     }
 }

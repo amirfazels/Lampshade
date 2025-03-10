@@ -18,7 +18,7 @@ namespace AccountManagement.Configuration
             services.AddTransient<IAccountApplication, AccountApplication>();
             services.AddTransient<IAccountRepository, AccountRepository>();
 
-            services.AddTransient<IRoleApplication, RoleApplication>();
+            services.AddTransient<IRoleApplication, RoleApplcation>();
             services.AddTransient<IRoleRepository, RoleRepository>();
 
 

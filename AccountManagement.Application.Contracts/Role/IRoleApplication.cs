@@ -5,8 +5,8 @@ namespace AccountManagement.Application.Contracts.Role
     public interface IRoleApplication
     {
         OperationResult Create(CreateRole command);
-        OperationResult Edit(EditCreate command);
-        EditCreate GetDetails(long id);
+        OperationResult Edit(EditRole command);
+        EditRole GetDetails(long id);
         List<RoleViewModel> Search(RoleSearchModel searchModel);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AccountManagement.Application.Contracts.Role
 {
-    public class EditCreate : CreateRole
+    public class EditRole : CreateRole
     {
         public long Id { get; set; }
     }

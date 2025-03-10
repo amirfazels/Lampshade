@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Role;
 using AccountManagement.Domain.RoleAgg;
 
@@ -20,7 +21,17 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public List<RoleViewModel> Search(RoleSearchModel searchModel)
         {
-            throw new NotImplementedException();
+            var query = _roleContext.Roles.Select(x => new RoleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CreationDate = x.CreationDate.ToFarsi(),
+            });
+
+            if (!string.IsNullOrWhiteSpace(searchModel.Name))
+                query = query.Where(x => x.Name.Contains(searchModel.Name));
+
+            return query.ToList();
         }
     }
 }

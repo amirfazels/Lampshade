@@ -42,7 +42,8 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
             builder
                 .HasOne(x => x.Role)
                 .WithMany(x => x.Account)
-                .HasForeignKey(x => x.RoleId);
+                .HasForeignKey(x => x.RoleId)
+                .OnDelete(DeleteBehavior.Cascade); ;
 
 
         }

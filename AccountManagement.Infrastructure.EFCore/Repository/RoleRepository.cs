@@ -14,9 +14,13 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             _roleContext = roleContext;
         }
 
-        public EditRole GetDetails(long id)
+        public EditRole? GetDetails(long id)
         {
-            throw new NotImplementedException();
+            return _roleContext.Roles.Select(x => new EditRole
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<RoleViewModel> Search(RoleSearchModel searchModel)

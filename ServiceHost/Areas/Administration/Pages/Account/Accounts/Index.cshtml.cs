@@ -1,4 +1,6 @@
 using AccountManagement.Application.Contracts.Account;
+using AccountManagement.Application.Contracts.Role;
+using AccountManagement.Domain.RoleAgg;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,10 +15,12 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Accounts
         public SelectList Roles;
 
         private readonly IAccountApplication _accountApplication;
+        private readonly IRoleApplication _roleApplication;
 
-        public IndexModel(IAccountApplication accountApplication)
+        public IndexModel(IAccountApplication accountApplication, IRoleApplication roleApplication)
         {
             _accountApplication = accountApplication;
+            _roleApplication = roleApplication;
         }
 
         public void OnGet(AccountSearchModel searchModel)
@@ -27,7 +31,7 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Accounts
         public IActionResult OnGetCreate()
         {
             var Account = new CreateAccount();
-            //Account.Categories = _accountCategoryApplication.GetAccountCategories();
+            Account.Roles = _roleApplication.Search(new RoleSearchModel());
             return Partial("./Create", Account);
         }
 
@@ -40,7 +44,7 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Accounts
         public IActionResult OnGetEdit(long id)
         {
             var Account = _accountApplication.GetDetails(id);
-            //Account.Categories = _AccountCategoryApplication.GetAccountCategories();
+            Account.Roles = _roleApplication.Search(new RoleSearchModel());
             return Partial("./Edit", Account);
         }
 

@@ -1,15 +1,15 @@
 ﻿@page
-@model             IndexModel
+@model ServiceHost.Areas.Administration.Pages.Account.Roles.IndexModel
 @{
     Layout = "Shared/_AdminLayout";
-    ViewData["title"] = "مدیریت کاربران";
+    ViewData["title"] = "مدیریت نقش ها";
 }
 
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد کاربر جدید</a>
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد نقش جدید</a>
         </p>
     </div>
 </div>
@@ -18,27 +18,13 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو در کاربران</h3>
+                <h3 class="panel-title">جستجو در  نقش ها</h3>
             </div>
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.FullName"></label>
-                        <input class="form-control" asp-for="SearchModel.FullName" placeholder="نام">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Username"></label>
-                        <input class="form-control" asp-for="SearchModel.Username" placeholder="نام کاربری">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.Mobile"></label>
-                        <input class="form-control" asp-for="SearchModel.Mobile" placeholder="موبایل">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.RoleId"></label>
-                        <select class="form-control" asp-for="SearchModel.RoleId" asp-items="Model.Roles">
-                            <option value="0">نقش</option>
-                        </select>
+                        <label class="sr-only" asp-for="SearchModel.Name"></label>
+                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام">
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
                     <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
@@ -52,7 +38,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">لیست کاربران</h3>
+                <h3 class="panel-title">لیست نقش ها</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -61,38 +47,23 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>عکس</th>
                                     <th>نام</th>
-                                    <th>نام کاربری</th>
-                                    <th>نقش</th>
-                                    <th>تلفن همراه</th>
-                                    <th>تاریخ ثبت نام</th>
+                                    <th>تاریخ ثبت</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Accounts)
+                                @foreach (var item in Model.Roles)
                                 {
                                     <tr>
                                         <td>@item.Id</td>
-                                        <td>
-                                            <img src="~/ProductPicture/@item.ProfilePhoto" style="width: 70px; height: 70px" />
-                                        </td>
-                                        <td>@item.FullName</td>
-                                        <td>@item.Username</td>
-                                        <td>@item.Role</td>
-                                        <td>@item.Mobile</td>
+                                        <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
+
                                             <a class="btn btn-warning btn-custom waves-effect waves-light m-b-5"
                                                href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
-                                            </a>
-
-
-                                            <a class="btn btn-primary btn-custom waves-effect waves-light m-b-5"
-                                               href="#showmodal=@Url.Page("./Index", "ChangePassword", new { id = item.Id})">
-                                                <i class="fa fa-key"></i> تغییر کلمه عبور
                                             </a>
 
                                         </td>

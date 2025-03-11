@@ -36,7 +36,6 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
 
             builder
                 .Property(x => x.ProfilePhoto)
-                .IsRequired()
                 .HasMaxLength(500);
 
             builder

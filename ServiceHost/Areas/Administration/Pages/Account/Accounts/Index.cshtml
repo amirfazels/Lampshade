@@ -1,5 +1,5 @@
 ﻿@page
-@model             IndexModel
+@model ServiceHost.Areas.Administration.Pages.Account.Accounts.IndexModel
 @{
     Layout = "Shared/_AdminLayout";
     ViewData["title"] = "مدیریت کاربران";
@@ -76,7 +76,14 @@
                                     <tr>
                                         <td>@item.Id</td>
                                         <td>
-                                            <img src="~/ProductPicture/@item.ProfilePhoto" style="width: 70px; height: 70px" />
+                                            @if (string.IsNullOrWhiteSpace(item.ProfilePhoto))
+                                            {
+                                                <img src="~/Static/DefaultUser.jpg" style="width: 70px; height: 70px" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/ProductPicture/@item.ProfilePhoto" style="width: 70px; height: 70px" />
+                                            }
                                         </td>
                                         <td>@item.FullName</td>
                                         <td>@item.Username</td>

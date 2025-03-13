@@ -48,13 +48,14 @@ namespace AccountManagement.Application
             var path = _fileUploader.Upload(command.ProfilePhoto, "ProfilePhotos");
             var password = _passwordHasher.Hash(command.Password);
 
-            var account = new Account(
-                command.FullName, 
-                command.Username,
-                password, 
-                command.Mobile, 
-                command.RoleId,
-                path
+            var account = new Account
+                (
+                    command.FullName, 
+                    command.Username,
+                    password, 
+                    command.Mobile, 
+                    command.RoleId,
+                    path
                 );
 
             _accountRepository.Create(account);
@@ -104,6 +105,17 @@ namespace AccountManagement.Application
 
             if (!result.Verified)
                 return operation.Failed(ApplicationMessages.PasswordNotMatch);
+
+
+            var authViewModel = new AuthViewModel
+                (
+                    account.Id,
+                    account.Username,
+                    account.FullName,
+                    account.RoleId
+                );
+
+            _authHelper.SignIn(authViewModel);
 
             return operation.Succedded();
         }

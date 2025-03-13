@@ -16,6 +16,8 @@ namespace ServiceHost
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddHttpContextAccessor();
+
             builder.Services.AddShopManagementServices(builder.Configuration);
             builder.Services.AddDiscountManagementServices(builder.Configuration);
             builder.Services.AddInventoryManagementServices(builder.Configuration);
@@ -23,6 +25,7 @@ namespace ServiceHost
             builder.Services.AddCommentManagementServices(builder.Configuration);
             builder.Services.AddAccountManagementServices(builder.Configuration);
             
+            builder.Services.AddTransient<IAuthHelper, AuthHelper>();
             builder.Services.AddTransient<IFileUploader, FileUploader>();
             
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();

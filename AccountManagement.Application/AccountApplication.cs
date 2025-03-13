@@ -90,6 +90,22 @@ namespace AccountManagement.Application
             return _accountRepository.GetDetails(id);
         }
 
+        public OperationResult Login(Login command)
+        {
+            var operation = new OperationResult();
+            var account = _accountRepository.GetByUsername(command.Username);
+
+            if (account == null)
+                return operation.Failed(ApplicationMessages.RecordNotFound);
+
+            var result = _passwordHasher.Check(account.Password, command.Password);
+
+            if (!result.Verified)
+                return operation.Failed(ApplicationMessages.PasswordNotMatch);
+
+            return operation.Succedded();
+        }
+
         public List<AccountViewModel> Search(AccountSearchModel searchModel)
         {
             return _accountRepository.Search(searchModel);

@@ -7,6 +7,7 @@ using BlogManagement.Configuration;
 using _0_Framework.Application;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ServiceHost
 {
@@ -31,6 +32,25 @@ namespace ServiceHost
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
+            builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.LoginPath = new PathString("/Account");
+                options.LogoutPath = new PathString("/Account/");
+                options.AccessDeniedPath = new PathString("/AccessDenied");
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
+            });
+
             // Add services to the container.
             builder.Services.AddRazorPages();
 
@@ -43,8 +63,11 @@ namespace ServiceHost
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
+            
+            app.UseCookiePolicy();
 
             app.UseRouting();
 

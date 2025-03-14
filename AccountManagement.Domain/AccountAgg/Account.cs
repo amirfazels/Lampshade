@@ -21,7 +21,11 @@ namespace AccountManagement.Domain.AccountAgg
             Username = username;
             Password = password;
             Mobile = mobile;
-            RoleId = roleId;
+            if (roleId > 0)
+                RoleId = roleId;
+            else
+                RoleId = 2;
+
             if (!string.IsNullOrWhiteSpace(profilePhoto))
                 ProfilePhoto = profilePhoto;
         }

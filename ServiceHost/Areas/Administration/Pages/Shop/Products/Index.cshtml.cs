@@ -31,7 +31,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
         {
             var product = new CreateProduct();
             product.Categories = _productCategoryApplication.GetProductCategories();
-            return Partial("./Create", product);
+            return Partial("./Register", product);
         }
 
         public JsonResult OnPostCreate(CreateProduct command)

@@ -28,16 +28,16 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Accounts
             Accounts = _accountApplication.Search(searchModel);
         }
 
-        public IActionResult OnGetCreate()
+        public IActionResult OnGetRegister()
         {
-            var Account = new CreateAccount();
+            var Account = new RegisterAccount();
             Account.Roles = _roleApplication.Search(new RoleSearchModel());
-            return Partial("./Create", Account);
+            return Partial("./Register", Account);
         }
 
-        public JsonResult OnPostCreate(CreateAccount command)
+        public JsonResult OnPostRegister(RegisterAccount command)
         {
-            var result = _accountApplication.Create(command);
+            var result = _accountApplication.Register(command);
             return new JsonResult(result);
         }
 

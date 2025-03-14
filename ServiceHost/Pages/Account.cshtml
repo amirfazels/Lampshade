@@ -30,10 +30,10 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                                @if (Model.Message != null)
+                                @if (Model.LoginMessage != null)
                                 {
                                     <div class="alert alert-danger">
-                                        <p>@Model.Message</p>
+                                        <p>@Model.LoginMessage</p>
                                     </div>
                                 }
                                 <form method="post" asp-page-handler="Login">
@@ -65,7 +65,13 @@
                                 </form>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                                <form method="post">
+                                @if (Model.RegisterMessage != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        <p>@Model.RegisterMessage</p>
+                                    </div>
+                                }
+                                <form method="post" asp-page-handler="Register">
 
                                     <div class="login-form">
                                         <h4 class="login-title">ثبت نام</h4>
@@ -78,6 +84,10 @@
                                             <div class="col-md-12 mb-20">
                                                 <label>نام کاربری</label>
                                                 <input type="text" name="Username" placeholder="نام کاربری">
+                                            </div>
+                                            <div class="col-md-12 mb-20">
+                                                <label>تلفن همراه</label>
+                                                <input type="text" name="Mobile" placeholder="تلفن همراه">
                                             </div>
                                             <div class="col-md-6 mb-20">
                                                 <label>کلمه عبور</label>

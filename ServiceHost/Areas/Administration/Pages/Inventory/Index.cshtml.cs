@@ -32,7 +32,7 @@ namespace ServiceHost.Areas.Administration.Pages.Inventory
         {
             var Inventory = new CreateInventory();
             Inventory.Products = _productApplication.GetProducts();
-            return Partial("./Create", Inventory);
+            return Partial("./Register", Inventory);
         }
 
         public JsonResult OnPostCreate(CreateInventory command)

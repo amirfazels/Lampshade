@@ -53,7 +53,7 @@ namespace _0_Framework.Application
                 : "";
         }
 
-        public string CurrentAccountRole()
+        public string? CurrentAccountRole()
         {
             if (IsAuthenticated())
                 return _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;

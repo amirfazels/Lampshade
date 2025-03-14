@@ -51,8 +51,21 @@ namespace ServiceHost
                 options.ExpireTimeSpan = TimeSpan.FromDays(30);
             });
 
+            builder.Services
+                .AddAuthorization(Options => 
+                    Options.AddPolicy
+                    (
+                        "AdminArea", 
+                        policy => policy.RequireRole(new List<string> { "1"})
+                    )
+                ); 
+
+
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages()
+                .AddRazorPagesOptions(Options => 
+                    Options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea")
+                );
 
             var app = builder.Build();
 

@@ -2,7 +2,8 @@
 {
     public interface IAuthHelper
     {
-        void SingOut();
-        void SignIn(AuthViewModel account);
+        void SignOut();
+        bool IsAuthenticated();
+        void Signin(AuthViewModel account);
     }
 }

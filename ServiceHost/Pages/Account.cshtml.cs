@@ -18,14 +18,20 @@ namespace ServiceHost.Pages
         public void OnGet()
         {
         }
-        public IActionResult OnPostLogin(Login command)
+        public RedirectToPageResult OnPostLogin(Login command)
         {
             var result = _accountApplication.Login(command);
             if (result.IsSuccedded)
                 return RedirectToPage("/Index");
 
             Message = result.Message;
-            return RedirectToPage("/Login");
+            return RedirectToPage("/Account", Message);
+        }
+
+        public RedirectToPageResult OnGetLogout()
+        {
+            _accountApplication.Logout();
+            return RedirectToPage("/Index");
         }
     }
 }

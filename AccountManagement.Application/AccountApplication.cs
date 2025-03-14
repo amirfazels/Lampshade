@@ -99,12 +99,12 @@ namespace AccountManagement.Application
             var account = _accountRepository.GetByUsername(command.Username);
 
             if (account == null)
-                return operation.Failed(ApplicationMessages.RecordNotFound);
+                return operation.Failed(ApplicationMessages.UserOrPassNotMatch);
 
             var result = _passwordHasher.Check(account.Password, command.Password);
 
             if (!result.Verified)
-                return operation.Failed(ApplicationMessages.PasswordNotMatch);
+                return operation.Failed(ApplicationMessages.UserOrPassNotMatch);
 
 
             var authViewModel = new AuthViewModel
@@ -115,9 +115,14 @@ namespace AccountManagement.Application
                     account.RoleId
                 );
 
-            _authHelper.SignIn(authViewModel);
+            _authHelper.Signin(authViewModel);
 
             return operation.Succedded();
+        }
+
+        public void Logout()
+        {
+            _authHelper.SignOut();
         }
 
         public List<AccountViewModel> Search(AccountSearchModel searchModel)

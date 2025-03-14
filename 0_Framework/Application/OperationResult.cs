@@ -19,7 +19,7 @@
 
         public OperationResult Failed(string message)
         {
-            IsSuccedded = true;
+            IsSuccedded = false;
             Message = message;
             return this;
         }

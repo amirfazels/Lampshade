@@ -79,9 +79,12 @@ namespace ServiceHost
                     {
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/Inventory", "AdminOnly");
-                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "AdminOnly");
-                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Account", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/ProductCategories", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/ProductPictures", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/Products", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/Slides", "AdminOnly");
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/Comments", "AdminArea");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Account", "AdminOnly");
                     }
                 );
 

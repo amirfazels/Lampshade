@@ -8,6 +8,7 @@ using _0_Framework.Application;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using _0_Framework.Infrastructure;
 
 namespace ServiceHost
 {
@@ -25,10 +26,10 @@ namespace ServiceHost
             builder.Services.AddBlogManagementServices(builder.Configuration);
             builder.Services.AddCommentManagementServices(builder.Configuration);
             builder.Services.AddAccountManagementServices(builder.Configuration);
-            
+
             builder.Services.AddTransient<IAuthHelper, AuthHelper>();
             builder.Services.AddTransient<IFileUploader, FileUploader>();
-            
+
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
@@ -52,19 +53,36 @@ namespace ServiceHost
             });
 
             builder.Services
-                .AddAuthorization(Options => 
+                .AddAuthorization(Options =>
+                {
                     Options.AddPolicy
                     (
-                        "AdminArea", 
-                        policy => policy.RequireRole(new List<string> { "1"})
-                    )
-                ); 
+                        "AdminArea",
+                        policy => policy.RequireRole(new List<string> 
+                            { 
+                                Roles.Admin, 
+                                Roles.ContentUploader 
+                            }
+                        )
+                    );
+                    Options.AddPolicy
+                    (
+                        "AdminOnly",
+                        policy => policy.RequireRole(new List<string> { Roles.Admin })
+                    );
+                }); 
 
 
             // Add services to the container.
             builder.Services.AddRazorPages()
-                .AddRazorPagesOptions(Options => 
-                    Options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea")
+                .AddRazorPagesOptions(Options =>
+                    {
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Inventory", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Account", "AdminOnly");
+                        Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/Comments", "AdminArea");
+                    }
                 );
 
             var app = builder.Build();

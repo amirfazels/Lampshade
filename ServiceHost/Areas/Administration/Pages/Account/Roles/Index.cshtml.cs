@@ -26,7 +26,7 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Roles
 
         public IActionResult OnGetCreate()
         {
-            return Partial("./Register");
+            return Partial("./Create");
         }
 
         public JsonResult OnPostCreate(CreateRole command)

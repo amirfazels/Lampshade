@@ -26,7 +26,7 @@ namespace _0_Framework.Application
             result.Username = claims.FirstOrDefault(x => x.Type == "Username").Value;
             result.RoleId = long.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);
             result.Fullname = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-            //result.Role = Roles.GetRoleBy(result.RoleId);
+            result.Role = Roles.GetRoleName(result.RoleId);
             return result;
         }
 

@@ -25,6 +25,30 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
                 .WithOne(x => x.Role)
                 .HasForeignKey(x => x.RoleId);
 
+            builder
+                .OwnsMany<Permission>(x => x.Permissions, navigationBuilder =>
+                {
+
+                    navigationBuilder
+                        .ToTable("RolePermissions");
+
+                    navigationBuilder
+                        .HasKey(x => x.Id);
+
+                    navigationBuilder
+                        .Property(x => x.Code)
+                        .IsRequired();
+
+                    navigationBuilder
+                        .Property(x => x.Name)
+                        .HasMaxLength(100)
+                        .IsRequired();
+
+                    navigationBuilder
+                        .WithOwner(x => x.Role);
+
+                });
+
         }
     }
 }

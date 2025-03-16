@@ -7,15 +7,19 @@ namespace AccountManagement.Domain.RoleAgg
     {
         public string Name { get; private set; }
         public List<Account> Account { get; private set; }
+        public List<Permission> Permissions { get; set; }
 
-        public Role(string name)
+        public Role(string name, List<Permission> permissions)
         {
             Name = name;
+            Account = new List<Account>();
+            Permissions = permissions;
         }
 
-        public void Edit(string name)
+        public void Edit(string name, List<Permission> permissions)
         {
             Name = name;
+            Permissions = permissions;
         }
     }
 }

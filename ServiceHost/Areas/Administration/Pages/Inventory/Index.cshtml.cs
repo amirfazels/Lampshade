@@ -35,7 +35,7 @@ namespace ServiceHost.Areas.Administration.Pages.Inventory
         {
             var Inventory = new CreateInventory();
             Inventory.Products = _productApplication.GetProducts();
-            return Partial("./Register", Inventory);
+            return Partial("./Create", Inventory);
         }
 
         public JsonResult OnPostCreate(CreateInventory command)

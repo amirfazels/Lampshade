@@ -6,5 +6,6 @@
         bool IsAuthenticated();
         void Signin(AuthViewModel account);
         string CurrentAccountRole();
+        AuthViewModel CurrentAccountInfo();
     }
 }

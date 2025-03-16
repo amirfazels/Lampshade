@@ -22,7 +22,7 @@ namespace ServiceHost.Areas.Administration.Pages.Blog.ArticleCategories
 
         public IActionResult OnGetCreate()
         {
-            return Partial("./Register", new CreateArticleCategory());
+            return Partial("./Create", new CreateArticleCategory());
         }
 
         public JsonResult OnPostCreate(CreateArticleCategory command)

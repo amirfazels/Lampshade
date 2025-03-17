@@ -12,11 +12,18 @@
 <form asp-page="Edit" method="post">
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="Role.Name" class="control-label">نام</label>
                     <input type="text" class="form-control" asp-for="Role.Name">
                     <span asp-validation-for="Role.Name" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label col-md-3">انتخاب دسترسی ها</label>
+                <div class="col-md-12">
+                    <select class="multi-select" multiple="multiple" id="my_multi_select3">
+                    </select>
                 </div>
             </div>
         </div>

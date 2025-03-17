@@ -9,6 +9,8 @@ namespace AccountManagement.Domain.RoleAgg
         public List<Account> Account { get; private set; }
         public List<Permission> Permissions { get; set; }
 
+        protected Role() { }
+
         public Role(string name, List<Permission> permissions)
         {
             Name = name;

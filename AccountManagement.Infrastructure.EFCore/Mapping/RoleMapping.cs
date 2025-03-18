@@ -40,9 +40,7 @@ namespace AccountManagement.Infrastructure.EFCore.Mapping
                         .IsRequired();
 
                     navigationBuilder
-                        .Property(x => x.Name)
-                        .HasMaxLength(100)
-                        .IsRequired();
+                        .Ignore(x => x.Name);
 
                     navigationBuilder
                         .WithOwner(x => x.Role);

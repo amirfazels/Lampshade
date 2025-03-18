@@ -19,24 +19,29 @@ namespace ServiceHost.Areas.Administration.Pages.Account.Roles
         {
             _roleApplication = roleApplication;
             _exposers = exposers;
+            Permissions = new List<SelectListItem>();
         }
 
         public void OnGet(long id)
         {
             Role = _roleApplication.GetDetails(id);
-            var Permissions = new List<PermissionDto>();
+            var permissions = new List<PermissionDto>();
             foreach (var exposer in _exposers)
             {
                 var exposedPermissions = exposer.Expose();
                 foreach (var (key, value) in exposedPermissions)
                 {
-                    Permissions.AddRange(value);
+                    permissions.AddRange(value);
                     foreach (var permission in value)
                     {
                         var items = new SelectListItem(permission.Name, permission.Code.ToString()) 
                         { 
                             Group = new SelectListGroup { Name = key }
                         };
+                        if (Role.MappedPermissions.Any(x => x.Code == permission.Code))
+                            items.Selected = true;
+
+                        Permissions.Add(items);
                     }
                 }
             }

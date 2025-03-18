@@ -75,6 +75,7 @@ namespace ServiceHost
 
             // Add services to the container.
             builder.Services.AddRazorPages()
+                .AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
                 .AddRazorPagesOptions(Options =>
                     {
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");

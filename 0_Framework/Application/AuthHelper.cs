@@ -3,6 +3,7 @@ using _0_Framework.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace _0_Framework.Application
 {
@@ -73,14 +74,14 @@ namespace _0_Framework.Application
 
         public void Signin(AuthViewModel account)
         {
-            //var permissions = JsonConvert.SerializeObject(account.Permissions);
+            var permissions = JsonConvert.SerializeObject(account.Permissions);
             var claims = new List<Claim>
             {
                 new Claim("AccountId", account.Id.ToString()),
                 new Claim(ClaimTypes.Name, account.Fullname),
                 new Claim(ClaimTypes.Role, account.RoleId.ToString()),
                 new Claim("Username", account.Username), // Or Use ClaimTypes.NameIdentifier
-                //new Claim("permissions", permissions),
+                new Claim("permissions", permissions),
                 //new Claim("Mobile", account.Mobile)
             };
 

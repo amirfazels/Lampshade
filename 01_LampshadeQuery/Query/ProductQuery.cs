@@ -154,6 +154,7 @@ namespace _01_LampshadeQuery.Query
                     PictureAlt = x.PictureAlt,
                     PictureTitle = x.PictureTitle,
                     Slug = x.Slug,
+                    CategorySlug = x.Category.Slug
                 }).OrderByDescending(x => x.Id).Take(6).ToList();
 
             products.ForEach(product =>

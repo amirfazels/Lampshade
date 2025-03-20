@@ -72,7 +72,7 @@
                                                                 <span class="sale">-@product.DiscountRate%</span>
                                                             </div>
                                                         }
-                                                        <a href="@product.Slug">
+                                                        <a asp-page="/Product" asp-route-id="@product.Slug">
                                                             <img src="~/ProductPicture/@product.Picture" class="img-fluid"
                                                                  alt="@product.Picture" title="@product.PictureTitle">
                                                         </a>
@@ -81,7 +81,9 @@
                                                     <div class="single-grid-product__content">
                                                         <div class="single-grid-product__category-rating">
                                                             <span class="category">
-                                                                <a href="shop-left-sidebar.html">@category.Name</a>
+                                                                <a asp-page="/ProductCategory" asp-route-id="@product.CategorySlug">
+                                                                    @category.Name
+                                                                </a>
                                                             </span>
                                                             <span class="rating">
                                                                 <i class="ion-android-star active"></i>

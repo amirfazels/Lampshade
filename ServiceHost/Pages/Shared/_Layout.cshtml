@@ -46,10 +46,16 @@
     <script src="~/Theme/assets/js/active.js"></script>
 
     <!-- Custom JS -->
-    <script src="~/Theme/assets/js/custom.js"></script>
+    <script src="~/Theme/assets/js/custom.js" defer></script>
 
     <!-- Plugin JS -->
-    <script src="~/Theme/assets/js/plugins.js"></script>
+    <script src="~/Theme/assets/js/plugins.js" defer></script>
+
+    <script>
+        $(document).ready(function () {
+            updateCart();
+        });
+    </script>
 
 </body>
 

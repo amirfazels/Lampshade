@@ -1,12 +1,12 @@
 ﻿const cookieName = "cart-items";
 
-function addToCart(id, name, price, picture) {
-    debugger;
+window.addToCart = function (id, name, price, picture) {
     let products = $.cookie(cookieName);
     if (products === undefined) {
         products = [];
     } else {
         products = JSON.parse(products);
+        debugger;
     }
 
     const count = $("#productCount").val();
@@ -22,6 +22,7 @@ function addToCart(id, name, price, picture) {
             count
         }
 
+        debugger;
         products.push(product);
     }
 
@@ -42,7 +43,7 @@ function updateCart() {
                             </a>
                             <div class="image">
                                 <a href="single-product.html">
-                                    <img src="/ProductPictures/${x.picture}"
+                                    <img src="/ProductPicture/${x.picture}"
                                          class="img-fluid" alt="">
                                 </a>
                             </div>

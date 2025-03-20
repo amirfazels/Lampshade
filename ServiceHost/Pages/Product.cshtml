@@ -1,4 +1,6 @@
 ﻿@page "{id}"
+@using System.Web
+@using System.Net
 @model ServiceHost.Pages.ProductModel
 @{
     ViewData["Title"] = Model.Product.Name;
@@ -51,33 +53,33 @@
                                     <div class="product-details-slider-area">
                                         <div class="big-image-wrapper">
                                             <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--bottom-space ht-slick-slider"
-                                                 data-slick-setting='{
-                                                    "slidesToShow": 1,
-                                                    "slidesToScroll": 1,
-                                                    "arrows": false,
-                                                    "autoplay": false,
-                                                    "autoplaySpeed": 5000,
-                                                    "fade": true,
-                                                    "speed": 500,
-                                                    "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
-                                                    "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                                                }' data-slick-responsive='[
-                                                    {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
-                                                    {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
-                                                    {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                                                    {"breakpoint":767, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                                                    {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                                                    {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
-                                                ]'>
+                                            data-slick-setting='{
+                                            "slidesToShow": 1,
+                                            "slidesToScroll": 1,
+                                            "arrows": false,
+                                            "autoplay": false,
+                                            "autoplaySpeed": 5000,
+                                            "fade": true,
+                                            "speed": 500,
+                                            "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
+                                            "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
+                                            }' data-slick-responsive='[
+                                            {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
+                                            {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
+                                            {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                            {"breakpoint":767, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                            {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                            {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
+                                            ]'>
                                                 <div class="single-image">
                                                     <img src="~/ProductPicture/@Model.Product.Picture" class="img-fluid"
-                                                         alt="@Model.Product.PictureAlt" title="@Model.Product.PictureTitle">
+                                                    alt="@Model.Product.PictureAlt" title="@Model.Product.PictureTitle">
                                                 </div>
                                                 @foreach (var ProductPicture in Model.Product.ProductPictures)
                                                 {
                                                     <div class="single-image">
                                                         <img src="~/ProductPicture/@ProductPicture.Picture" class="img-fluid"
-                                                             alt="@ProductPicture.PictureAlt" title="@ProductPicture.PictureTitle">
+                                                        alt="@ProductPicture.PictureAlt" title="@ProductPicture.PictureTitle">
                                                     </div>
                                                 })
                                             </div>
@@ -85,35 +87,35 @@
 
 
                                         <div class="product-details-small-image-slider-wrapper product-details-small-image-slider-wrapper--horizontal-space ht-slick-slider"
-                                             data-slick-setting='{
-                                                "slidesToShow": 4,
-                                                "slidesToScroll": 1,
-                                                "arrows": true,
-                                                "autoplay": false,
-                                                "autoplaySpeed": 5000,
-                                                "speed": 500,
-                                                "asNavFor": ".product-details-big-image-slider-wrapper",
-                                                "focusOnSelect": true,
-                                                "centerMode": false,
-                                                "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
-                                                "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                                            }' data-slick-responsive='[
-                                                {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": false} },
-                                                {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": false} },
-                                                {"breakpoint":991, "settings": {"slidesToShow": 5, "arrows": false, "slidesToScroll": 1} },
-                                                {"breakpoint":767, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
-                                                {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
-                                                {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1} }
-                                            ]'>
+                                        data-slick-setting='{
+                                        "slidesToShow": 4,
+                                        "slidesToScroll": 1,
+                                        "arrows": true,
+                                        "autoplay": false,
+                                        "autoplaySpeed": 5000,
+                                        "speed": 500,
+                                        "asNavFor": ".product-details-big-image-slider-wrapper",
+                                        "focusOnSelect": true,
+                                        "centerMode": false,
+                                        "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
+                                        "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
+                                        }' data-slick-responsive='[
+                                        {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": false} },
+                                        {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": false} },
+                                        {"breakpoint":991, "settings": {"slidesToShow": 5, "arrows": false, "slidesToScroll": 1} },
+                                        {"breakpoint":767, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
+                                        {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1} },
+                                        {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1} }
+                                        ]'>
                                             <div class="single-image">
                                                 <img src="~/ProductPicture/@Model.Product.Picture" class="img-fluid"
-                                                     alt="@Model.Product.PictureAlt" title="@Model.Product.PictureTitle">
+                                                alt="@Model.Product.PictureAlt" title="@Model.Product.PictureTitle">
                                             </div>
                                             @foreach (var ProductPicture in Model.Product.ProductPictures)
                                             {
                                                 <div class="single-image">
                                                     <img src="~/ProductPicture/@ProductPicture.Picture" class="img-fluid"
-                                                         alt="@ProductPicture.PictureAlt" title="@ProductPicture.PictureTitle">
+                                                    alt="@ProductPicture.PictureAlt" title="@ProductPicture.PictureTitle">
                                                 </div>
                                             })
                                         </div>
@@ -175,7 +177,15 @@
                                             </div>
 
                                             <div class="product-buttons">
-                                                <a class="cart-btn" onclick="addToCart('@Model.Product.Id', '@Model.Product.Name', '@Model.Product.Price', '@Model.Product.Picture');">
+                                                @{
+                                                    var pic = WebUtility.HtmlEncode(Model.Product.Picture.Replace("\\", "/"));
+                                                }
+                                                <a class="cart-btn" 
+                                                onclick='addToCart(
+                                                        "@Model.Product.Id", 
+                                                        "@Model.Product.Name", 
+                                                        "@Model.Product.Price", 
+                                                        "@pic");'>
                                                     <i class="ion-bag"></i> افزودن به سبد خرید
                                                 </a>
                                             </div>

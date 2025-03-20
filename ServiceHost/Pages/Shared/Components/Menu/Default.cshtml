@@ -48,18 +48,6 @@
                                 <li>
                                     <a asp-page="/Contact">تماس با ما</a>
                                 </li>
-                                @if (!AuthHelper.IsAuthenticated())
-                                {
-                                    <li>
-                                        <a asp-page="/Account">ورود / ثبت نام</a>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <a asp-page="/Account" asp-page-handler="Logout" >خروج</a>
-                                    </li>
-                                }
                             </ul>
                         </nav>
                     </div>
@@ -177,11 +165,19 @@
                                         <div class="single-settings-block">
                                             <h4 class="title">حساب من</h4>
                                             <ul>
-                                                <li>
+                                                @* <li>
                                                     <a href="login-register.html">ثبت نام</a>
-                                                </li>
+                                                </li> *@
                                                 <li>
-                                                    <a href="login-register.html">ورود</a>
+
+                                                    @if (!AuthHelper.IsAuthenticated())
+                                                    {
+                                                        <a asp-page="/Account">ورود / ثبت نام</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-page="/Account" asp-page-handler="Logout">خروج</a>
+                                                    }
                                                 </li>
                                             </ul>
                                         </div>

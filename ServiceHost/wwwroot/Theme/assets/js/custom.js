@@ -6,7 +6,6 @@ window.addToCart = function (id, name, price, picture) {
         products = [];
     } else {
         products = JSON.parse(products);
-        debugger;
     }
 
     const count = $("#productCount").val();
@@ -21,8 +20,6 @@ window.addToCart = function (id, name, price, picture) {
             picture,
             count
         }
-
-        debugger;
         products.push(product);
     }
 

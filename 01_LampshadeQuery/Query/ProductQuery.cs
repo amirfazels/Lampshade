@@ -71,7 +71,7 @@ namespace _01_LampshadeQuery.Query
             {
                 product.IsInStock = productInventory.InStock;
                 product.Price = productInventory.UnitPrice.ToMoney();
-
+                product.DoublePrice = productInventory.UnitPrice;
                 if (productDiscount != null)
                 {
                     product.DiscountExpireDate = productDiscount.EndDate.ToDiscountFormat();
@@ -164,6 +164,7 @@ namespace _01_LampshadeQuery.Query
                 if (productInventory != null)
                 {
                     product.Price = productInventory.UnitPrice.ToMoney();
+                    product.DoublePrice = productInventory.UnitPrice;
 
                     if (productDiscount != null)
                     {
@@ -214,6 +215,7 @@ namespace _01_LampshadeQuery.Query
                 if (productInventory != null)
                 {
                     product.Price = productInventory.UnitPrice.ToMoney();
+                    product.DoublePrice = productInventory.UnitPrice;
 
                     if (productDiscount != null)
                     {

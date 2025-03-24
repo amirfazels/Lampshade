@@ -67,7 +67,7 @@
                                                 </td>
                                                 <td class="pro-price">
                                                     <span>
-                                                        @(item.UnitPrice.ToString("N0", new System.Globalization.CultureInfo("fa-IR")) + " تومان")
+                                                        @(item.UnitPrice.ToMoney() + " تومان")
                                                     </span>
                                                 </td>
                                                 <td class="pro-quantity">

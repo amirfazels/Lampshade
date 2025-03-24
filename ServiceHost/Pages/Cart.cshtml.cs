@@ -1,9 +1,8 @@
+using _01_LampshadeQuery.Contracts.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nancy.Json;
 using ShopManagement.Application.Contacts.Order;
-using System.Text.Encodings.Web;
-using System.Text.Json;
 
 namespace ServiceHost.Pages
 {
@@ -12,11 +11,23 @@ namespace ServiceHost.Pages
         public List<CartItem> CartItems;
         public const string CookieName = "cart-items";
 
+        private readonly IProductQuery _productQuery;
+
+        public CartModel(IProductQuery productQuery)
+        {
+            _productQuery = productQuery;
+        }
+
         public void OnGet()
         {
             var serializer = new JavaScriptSerializer();
             var value = Request.Cookies[CookieName];
-            CartItems = serializer.Deserialize<List<CartItem>>(value) ?? new List<CartItem>();
+
+            CartItems = _productQuery
+                .CheckInventoryStatus
+                (
+                    serializer.Deserialize<List<CartItem>>(value) ?? new List<CartItem>()
+                );
         }
 
         public IActionResult OnGetRemoveFromCart(long id)
@@ -24,8 +35,11 @@ namespace ServiceHost.Pages
             var serializer = new JavaScriptSerializer();
             var value = Request.Cookies[CookieName];
 
-            //if (string.IsNullOrEmpty(value))
-            //    return RedirectToPage("/Cart");
+            Response.Headers["Location"] = "/Cart";
+            Response.StatusCode = 302;
+
+            if (string.IsNullOrEmpty(value))
+                return new EmptyResult();
 
             var cartItems = serializer.Deserialize<List<CartItem>>(value) ?? new List<CartItem>();
             var item = cartItems.FirstOrDefault(x => x.Id == id);
@@ -38,13 +52,12 @@ namespace ServiceHost.Pages
                     Path = "/",
                     HttpOnly = false,
                     Secure = true,
-                    IsEssential = true, //<- there
+                    IsEssential = true,
                 };
                 Response.Cookies.Delete(CookieName);
                 Response.Cookies.Append(CookieName, serializer.Serialize(cartItems), options);
             }
-            Response.Headers["Location"] = "/Cart";
-            Response.StatusCode = 302;
+
             return new EmptyResult();
         }
     }

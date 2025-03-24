@@ -31,6 +31,14 @@
             <div class="col-lg-12">
                 <!--=======  page wrapper  =======-->
                 <div class="page-wrapper">
+                    @foreach (var cartitem in Model.CartItems.Where(x => !x.IsInStock))
+                    {
+                        <div class="alert alert-warning">
+                            <i class="fa fa-warning"></i>
+                            کالای <strong>@cartitem.Name</strong> به تعداد درخواست شما در انبار موجود نیست.
+                        </div>
+                    }
+
                     <div class="page-content-wrapper">
                         <form action="#">
                             <div class="cart-table table-responsive">

@@ -7,6 +7,7 @@ using CommentManagement.Infrastructure.EFCore;
 using DiscountManagement.Infrastructure.EfCore;
 using InventoryManagement.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contacts.Order;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore;
 
@@ -227,6 +228,29 @@ namespace _01_LampshadeQuery.Query
                 product.HasDiscount = product.PriceWithDiscount != null;
             });
             return products;
+        }
+
+        public List<CartItem> CheckInventoryStatus(List<CartItem> cartItems)
+        {
+            var inventory = _inventoryContext.Inventory
+                .Select(x => new
+                {
+                    x.ProductId,
+                    x.InStock
+                }).ToList();
+            foreach (var cartItem in cartItems)
+            {
+                var cartItemInventory = inventory.FirstOrDefault(x => x.ProductId == cartItem.Id);
+
+                if (inventory.Any(x => x.ProductId == cartItem.Id && x.InStock))
+                    cartItem.IsInStock = true;
+
+                else
+                    cartItem.IsInStock = false;
+
+            }
+
+            return cartItems;
         }
     }
 }

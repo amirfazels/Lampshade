@@ -7,6 +7,7 @@
         public double UnitPrice { get; set; }
         public string Picture { get; set; }
         public int Count { get; set; }
+        public bool IsInStock { get; set; }
         public double TotalItemPrice => UnitPrice * Count;
     }
 }

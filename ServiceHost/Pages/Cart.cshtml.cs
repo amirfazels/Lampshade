@@ -60,5 +60,19 @@ namespace ServiceHost.Pages
 
             return new EmptyResult();
         }
+
+        public IActionResult OnPostGoToCheckOut()
+        {
+            var serializer = new JavaScriptSerializer();
+            var value = Request.Cookies[CookieName];
+
+            CartItems = _productQuery
+                .CheckInventoryStatus
+                (
+                    serializer.Deserialize<List<CartItem>>(value) ?? new List<CartItem>()
+                );
+
+            return RedirectToPage(CartItems.Any(x=> !x.IsInStock)? "/Cart" : "/Checkout");
+        }
     }
 }

@@ -40,7 +40,7 @@
                     }
 
                     <div class="page-content-wrapper">
-                        <form action="#">
+                        <form method="post" asp-page-handler="GoToCheckOut">
                             <div class="cart-table table-responsive">
                                 <table class="table">
                                     <thead>
@@ -90,17 +90,17 @@
                                        </tbody>
                                 </table>
                             </div>
-                        </form>
 
-                        <div class="row">
-                            <div class="col-lg-6 col-12 d-flex">
-                                <div class="cart-summary">
-                                    <div class="cart-summary-button">
-                                        <button class="checkout-btn">سفارش</button>
+                            <div class="row">
+                                <div class="col-lg-6 col-12 d-flex">
+                                    <div class="cart-summary">
+                                        <div class="cart-summary-button">
+                                            <button class="checkout-btn">تکمیل فرآیند</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

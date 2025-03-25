@@ -72,11 +72,11 @@
                                                 </td>
                                                 <td class="pro-quantity">
                                                     <div class="quantity-selection">
-                                                        <input type="number" value="@item.Count" min="1">
+                                                        <input type="number" value="@item.Count" min="1" onchange="changeCartItemCount('@item.Id', 'TotalItemPrice-@item.Id', this.value)">
                                                     </div>
                                                 </td>
                                                 <td class="pro-subtotal">
-                                                    <span>
+                                                    <span id="TotalItemPrice-@item.Id">
                                                         @(item.TotalItemPrice.ToMoney() + " تومان")
                                                     </span>
                                                 </td>

@@ -73,7 +73,7 @@ function changeCartItemCount(id, totalId, count) {
     products[productIndex].count = count;
     const product = products[productIndex];
     const newPrice = parseInt(product.unitPrice) * parseInt(count);
-    $(`#${totalId}`).text(newPrice);
+    $(`#${totalId}`).text(newPrice.toLocaleString('en-US') + " تومان");
     //products[productIndex].totalPrice = newPrice;
     $.cookie(cookieName, JSON.stringify(products), { expires: 2, path: "/" });
     updateCart();

@@ -1,4 +1,5 @@
-﻿@inject _0_Framework.Application.IAuthHelper AuthHelper;
+﻿@using _0_Framework.Infrastructure
+@inject _0_Framework.Application.IAuthHelper AuthHelper;
 
 @{
     var CurrentAccount = AuthHelper.CurrentAccountInfo();
@@ -32,7 +33,7 @@
                 </li>
 
 
-                @if (AuthHelper.CurrentAccountRole() == "1")
+                @if (AuthHelper.CurrentAccountRole() == Roles.Admin)
                 {
                     <li>
                         <a class="waves-effect active" asp-page="/Inventory/Index"><i class="md md-store"></i><span> انبار </span></a>

@@ -12,13 +12,12 @@ namespace ShopManagement.Domain.OrderAgg
         public Order Order { get; private set; }
 
         public OrderItem(long productId, int count,
-            double unitPrice, int discountRate, long orderId)
+            double unitPrice, int discountRate)
         {
             ProductId = productId;
             Count = count;
             UnitPrice = unitPrice;
             DiscountRate = discountRate;
-            OrderId = orderId;
         }
 
     }

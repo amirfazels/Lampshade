@@ -16,7 +16,7 @@ namespace ShopManagement.Domain.OrderAgg
         public List<OrderItem> Items { get; private set; }
 
         public Order(long accountId, double totalAmount,
-            double discountAmount, double payAmount, string issueTrackingNo)
+            double discountAmount, double payAmount)
         {
             AccountId = accountId;
             TotalAmount = totalAmount;
@@ -24,7 +24,6 @@ namespace ShopManagement.Domain.OrderAgg
             PayAmount = payAmount;
             IsPaid = false;
             IsCanceled = false;
-            IssueTrackingNo = issueTrackingNo;
             RefId = 0;
             Items = new List<OrderItem>();
         }

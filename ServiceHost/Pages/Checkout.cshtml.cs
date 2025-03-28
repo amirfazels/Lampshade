@@ -13,11 +13,13 @@ namespace ServiceHost.Pages
         public Cart Cart;
         public const string CookieName = "cart-items";
 
+        private readonly ICartService _cartService;
         private readonly IProductQuery _productQuery;
         private readonly ICartCalculatorService _cartCalculatorService;
 
-        public CheckoutModel(IProductQuery productQuery, ICartCalculatorService cartCalculatorService)
+        public CheckoutModel(IProductQuery productQuery, ICartCalculatorService cartCalculatorService, ICartService cartService)
         {
+            _cartService = cartService;
             _productQuery = productQuery;
             _cartCalculatorService = cartCalculatorService;
         }
@@ -34,6 +36,14 @@ namespace ServiceHost.Pages
                 );
 
             Cart = _cartCalculatorService.ComputeCart(cartItems);
+            _cartService.Set(Cart);
+        }
+
+        public IActionResult OnPostPay()
+        {
+            var cart = _cartService.Get();
+            var result = _productQuery.CheckInventoryStatus(cart.Items);
+            return RedirectToPage(result.Any(x => !x.IsInStock) ? "/Cart" : "/Checkout");
         }
     }
 }

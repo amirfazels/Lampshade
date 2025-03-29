@@ -25,6 +25,7 @@ namespace ShopManagement.Application
                 order.AddItem(new OrderItem(item.Id, item.Count, item.UnitPrice, item.DiscountRate));
             
             _orderRepository.Create(order);
+            _orderRepository.SaveChanges();
 
             return order.Id;
         }

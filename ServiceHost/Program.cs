@@ -7,6 +7,7 @@ using BlogManagement.Configuration;
 using _0_Framework.Application;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using _0_Framework.Application.ZarinPal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using _0_Framework.Infrastructure;
 
@@ -30,6 +31,7 @@ namespace ServiceHost
             builder.Services.AddTransient<IAuthHelper, AuthHelper>();
             builder.Services.AddTransient<IFileUploader, FileUploader>();
 
+            builder.Services.AddSingleton<IZarinPalFactory, ZarinPalFactory>();
             builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
             builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 

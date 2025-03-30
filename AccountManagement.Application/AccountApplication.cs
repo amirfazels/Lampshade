@@ -121,6 +121,7 @@ namespace AccountManagement.Application
                     account.Username,
                     account.FullName,
                     account.RoleId,
+                    account.Mobile,
                     permissions
                 );
 

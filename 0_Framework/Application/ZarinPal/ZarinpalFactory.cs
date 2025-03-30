@@ -47,24 +47,22 @@ namespace _0_Framework.Application.ZarinPal
             {
                 merchant_id = MerchantId,
                 amount = finalAmount,
-                //currency = ZarinpalCurrency.IranianRial,
+                currency = ZarinpalCurrency.IranianToman,
                 description = description,
                 callback_url = $"{siteUrl}/Checkout?handler=CallBack&oId={orderId}"
             };
 
-            //body.metadata = paymentRequestMetadata;
+            body.metadata = paymentRequestMetadata;
 
             request.AddJsonBody(body);
             var response = client.Execute(request);
-            var jsonSerializer = new JsonSerializer();
-            string json = response.Content.Replace("\"errors\":[]", "\"errors\":{}");
-            return JsonConvert.DeserializeObject<PaymentResponse>(json);
+            return JsonConvert.DeserializeObject<PaymentResponse>(jsonResponse(response));
         }
 
 
         public VerificationResponse CreateVerificationRequest(string authority, string amount)
         {
-            var client = new RestClient($"https://{Prefix}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json");
+            var client = new RestClient($"https://{Prefix}.zarinpal.com/pg/v4/payment/verify.json");
             var request = new RestRequest();
             request.Method = Method.Post; 
             request.AddHeader("Content-Type", "application/json");
@@ -74,13 +72,17 @@ namespace _0_Framework.Application.ZarinPal
 
             request.AddJsonBody(new VerificationRequest
             {
-                Amount = finalAmount,
-                MerchantID = MerchantId,
-                Authority = authority
+                amount = finalAmount,
+                merchant_id = MerchantId,
+                authority = authority
             });
             var response = client.Execute(request);
-            var jsonSerializer = new JsonSerializer();
-            return JsonConvert.DeserializeObject<VerificationResponse>(response.Content);
+            return JsonConvert.DeserializeObject<VerificationResponse>(jsonResponse(response));
+        }
+
+        private string jsonResponse(RestResponse? response)
+        {
+            return response.Content.Replace("\"errors\":[]", "\"errors\":{}");
         }
     }
 }

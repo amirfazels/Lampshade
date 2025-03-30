@@ -1,14 +1,12 @@
-﻿using _0_Framework.Application;
+﻿using System.Globalization;
+using _0_Framework.Application;
 using _0_Framework.Application.ZarinPal;
 using _01_LampshadeQuery.Contracts;
 using _01_LampshadeQuery.Contracts.Product;
-using _01_LampshadeQuery.Query;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Nancy.Extensions;
 using Nancy.Json;
-using Nancy.ViewEngines;
 using ShopManagement.Application.Contacts.Order;
 
 namespace ServiceHost.Pages
@@ -65,11 +63,31 @@ namespace ServiceHost.Pages
             var AccountUsername = _authHelper.CurrentAccountInfo().Username;
             var orderId = _orderApplication.PlaceOrder(cart);
             PaymentResponse paymentResponse = _zarinPalFactory.CreatePaymentRequest(cart.PayAmount.ToString(), AccountMobile, AccountUsername, "خرید ار فروشگاه لامپ شیدا", orderId);
-            var paymentResponseData = (PaymentData)paymentResponse.Data;
+            var paymentResponseData = paymentResponse.Data;
             if (paymentResponseData.Code.Equals(100))
                 return Redirect($"https://sandbox.zarinpal.com/pg/StartPay/{paymentResponseData.Authority}");
 
             return Content(new JavaScriptSerializer().Serialize(paymentResponse), "application/json");
+        }
+
+
+        public IActionResult OnGetCallBack([FromQuery]string authority, [FromQuery] string status, [FromQuery] long oId)
+        {
+            var orderAmount = _orderApplication.GetAmountById(oId);
+            var verificationResponse = _zarinPalFactory
+                .CreateVerificationRequest(authority, 
+                    orderAmount.ToString(CultureInfo.InvariantCulture));
+            var paymentResult = new PaymentResult();
+            if (status.ToLower().Equals("ok") && verificationResponse.Data.IsSuccess)
+            {
+                string issueTrackingNo = _orderApplication.PaymentSucceeded(oId, verificationResponse.Data.RefId);
+                Response.Cookies.Delete(CookieName);
+                paymentResult = paymentResult.Succeeded("پرداخت با موفقیت انجام شد", issueTrackingNo);
+            }
+            else
+                paymentResult  = paymentResult.Failed("پرداخت با موفقیت انجام نشد");
+
+            return RedirectToPage("/PaymentResult", paymentResult); 
         }
     }
 }

@@ -11,5 +11,11 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
         {
             _shopContext = shopContext;
         }
+
+        public double GetAmountById(long id)
+        {
+            var order = _shopContext.Orders.FirstOrDefault(x=> x.Id == id);
+            return order?.PayAmount ?? 0;
+        }
     }
 }

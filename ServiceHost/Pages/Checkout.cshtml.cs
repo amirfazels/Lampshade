@@ -6,6 +6,7 @@ using _01_LampshadeQuery.Contracts.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Nancy.Extensions;
 using Nancy.Json;
 using ShopManagement.Application.Contacts.Order;
 
@@ -51,9 +52,10 @@ namespace ServiceHost.Pages
             _cartService.Set(Cart);
         }
 
-        public IActionResult OnPostPay()
+        public IActionResult OnPostPay(int paymentMethod)
         {
             var cart = _cartService.Get();
+            cart.SetPaymentMethod(paymentMethod);
             var result = _productQuery.CheckInventoryStatus(cart.Items);
 
             if (result.Any(x => !x.IsInStock))
@@ -62,6 +64,14 @@ namespace ServiceHost.Pages
             var AccountMobile = _authHelper.CurrentAccountMobile();
             var AccountUsername = _authHelper.CurrentAccountInfo().Username;
             var orderId = _orderApplication.PlaceOrder(cart);
+
+            if (paymentMethod != 1)
+            {
+                var paymentResult = new PaymentResult()
+                    .OfflinePayment("سفارش شما با موفقیت انجام شد، پس پرداخت وجه و تماس همکاران کالا ارسال می شود");
+                return RedirectToPage("/PaymentResult", paymentResult);
+            }
+
             PaymentResponse paymentResponse = _zarinPalFactory.CreatePaymentRequest(cart.PayAmount.ToString(), AccountMobile, AccountUsername, "خرید ار فروشگاه لامپ شیدا", orderId);
             var paymentResponseData = paymentResponse.Data;
             if (paymentResponseData.Code.Equals(100))

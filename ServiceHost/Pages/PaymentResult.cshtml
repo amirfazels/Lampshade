@@ -1,4 +1,6 @@
 ﻿@page
+@using _0_Framework.Application.ZarinPal
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ServiceHost.Pages.PaymentResultModel
 @{
     ViewData["Title"] = "نتیجه پرداخت";
@@ -28,9 +30,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="alert alert-@(Model.Result.IsSuccessful ? "success" : "danger")">
+                <div class="alert alert-@(Model.Result.Status != PaymentStatus.Failed ? "success" : "danger")">
                     <p>@Model.Result.Message</p>
-                    @if(Model.Result.IsSuccessful)
+                    @if (Model.Result.Status == PaymentStatus.Succeeded)
                     {<p> شماره پیگیری: <strong>@Model.Result.IssueTrackingNo</strong></p>}
                 </div>
             </div>

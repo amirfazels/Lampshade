@@ -1,12 +1,8 @@
-using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Account;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ShopManagement.Application;
 using ShopManagement.Application.Contacts.Order;
-using ShopManagement.Application.Contacts.ProductCategory;
-using ShopManagement.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Orders
 {
@@ -46,6 +42,12 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Orders
         {
             _orderApplication.Restore(orderId);
             return RedirectToPage("./Index");
+        }
+
+        public PartialViewResult OnGetItems(long orderId)
+        {
+            var items = _orderApplication.GetItems(orderId);
+            return Partial("./Items", items);
         }
     }
 }

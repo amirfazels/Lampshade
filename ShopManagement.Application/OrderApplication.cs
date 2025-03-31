@@ -69,6 +69,11 @@ namespace ShopManagement.Application
             return _orderRepository.GetAmountById(id);
         }
 
+        public List<OrderItemViewModel> GetItems(long orderId)
+        {
+            return _orderRepository.GetItems(orderId);
+        }
+
         public List<OrderViewModel> Search(OrderSearchModel searchModel)
         {
             return _orderRepository.Search(searchModel);

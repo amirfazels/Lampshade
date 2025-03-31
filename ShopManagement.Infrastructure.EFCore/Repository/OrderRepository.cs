@@ -24,6 +24,38 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             return order?.PayAmount ?? 0;
         }
 
+        public List<OrderItemViewModel> GetItems(long orderId)
+        {
+            var products = _shopContext.Products
+                .Select(x => new 
+                { 
+                    x.Id, 
+                    x.Name
+                }).ToList();
+
+            var order = _shopContext.Orders.FirstOrDefault(x => x.Id == orderId);
+
+            if (order == null)
+                return new List<OrderItemViewModel>();
+            
+            var items = order?.Items.Select(x => new OrderItemViewModel
+            {
+                Id = x.Id,
+                ProductId = x.ProductId,
+                Count = x.Count,
+                UnitPrice = x.UnitPrice,
+                DiscountRate = x.DiscountRate,
+                OrderId = x.OrderId,
+            }).ToList();
+
+            foreach (var item in items)
+            {
+                item.Product = products.FirstOrDefault(p => p.Id == item.ProductId)?.Name ?? "";
+            }
+
+            return items;
+        }
+
         public List<OrderViewModel> Search(OrderSearchModel searchModel)
         {
             var query = _shopContext.Orders.Select(x => new OrderViewModel

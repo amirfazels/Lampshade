@@ -22,7 +22,7 @@ namespace _0_Framework.Application.ZarinPal
             long orderId)
         {
             amount = amount.Replace(",", "");
-            var finalAmount = int.Parse(amount);
+            var finalAmount = long.Parse(amount);
             var siteUrl = _configuration.GetSection("payment")["siteUrl"];
 
             var client = new RestClient($"https://{Prefix}.zarinpal.com/pg/v4/payment/request.json");

@@ -7,6 +7,7 @@
         void Restore(long orderId);
         void Cancel(long orderId);
         double GetAmountById(long id);
+        List<OrderItemViewModel> GetItems(long orderId);
         List<OrderViewModel> Search(OrderSearchModel searchModel);
     }
 }

@@ -22,12 +22,30 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Orders
         {
             _accountApplication = accountApplication;
             _orderApplication = productCategoryApplication;
-            Accounts = new SelectList(_accountApplication.GetAccounts(), "Id", "FullName"); 
         }
 
         public void OnGet(OrderSearchModel searchModel)
         {
             Orders = _orderApplication.Search(searchModel);
+            Accounts = new SelectList(_accountApplication.GetAccounts(), "Id", "FullName");
+        }
+
+        public IActionResult OnGetConfirm(long orderId)
+        {
+            _orderApplication.PaymentSucceeded(orderId, 0);
+            return RedirectToPage("./Index");
+        }
+
+        public IActionResult OnGetCancel(long orderId)
+        {
+            _orderApplication.Cancel(orderId);
+            return RedirectToPage("./Index");
+        }
+
+        public IActionResult OnGetRestore(long orderId)
+        {
+            _orderApplication.Restore(orderId);
+            return RedirectToPage("./Index");
         }
     }
 }

@@ -42,9 +42,15 @@ namespace ShopManagement.Domain.OrderAgg
             IsCanceled = true;
         }
 
+        public void Restore()
+        {
+            IsCanceled = false;
+        }
+
         public void SetIssueTrackingNo(string number)
         {
-            IssueTrackingNo = number;
+            if(string.IsNullOrWhiteSpace(IssueTrackingNo))
+                IssueTrackingNo = number;
         }
 
         public void AddItem(OrderItem item)

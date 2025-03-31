@@ -77,24 +77,31 @@
                                         <td>@item.RefId</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            @if (item.IsCanceled){<span class="text-danger">کنسل شده</span>}
-                                            @if (item.IsPaid){<span class="text-success">پرداخت شده</span>}
+                                            @if (item.IsCanceled && !item.IsPaid) { <span class="text-danger">کنسل شده</span> }
+                                            @if (!item.IsCanceled && item.IsPaid) { <span class="text-success">پرداخت شده</span> }
                                             @if (!item.IsCanceled && !item.IsPaid){<span class="text-warning">در انتظار پرداخت</span>}
+                                            @if (item.IsCanceled && item.IsPaid){<span class="text-danger">کنسل پس از پرداخت</span>}
                                         </td>
                                         <td>
-                                            @if(!item.IsPaid)
+                                            @if (!item.IsCanceled && !item.IsPaid)
                                             {
-                                                <a class="btn btn-success pull-right m-rl-5" asp-page-handler="Confirm">
+                                                <a class="btn btn-success pull-right m-rl-5" asp-page-handler="Confirm" asp-route-orderId="@item.Id">
                                                     <i class="fa fa-check"></i> تایید
                                                 </a>
                                             }
-                                            else
+                                            @if (!item.IsCanceled && item.IsPaid)
                                             {
-                                                <a class="btn btn-danger pull-right m-rl-5" asp-page-handler="Cancel">
+                                                <a class="btn btn-danger pull-right m-rl-5" asp-page-handler="Cancel" asp-route-orderId="@item.Id">
                                                     <i class="fa fa-times-circle"></i> لغو</a>
                                             }
+                                            @if (item.IsCanceled && item.IsPaid)
+                                            {
+                                                <a class="btn btn-danger pull-right m-rl-5" asp-page-handler="Restore" asp-route-orderId="@item.Id">
+                                                    <i class="fa fa-times-circle"></i> لغو مرجوع
+                                                </a>
+                                            }
                                                 
-                                            <a class="btn btn-warning pull-right m-rl-5"
+                                            <a class="btn btn-primary pull-right m-rl-5"
                                                href="#showmodal=@Url.Page("./Index", "Items", new { id = item.Id })">
                                                 <i class="fa fa-id-card"></i> آیتم ها
                                             </a>

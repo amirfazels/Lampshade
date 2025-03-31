@@ -31,12 +31,15 @@
                 <li>
                     <a class="waves-effect active" asp-page="/Index"><i class="md md-home"></i><span> داشبورد </span></a>
                 </li>
-
+                
+                <li>
+                    <a class="waves-effect" asp-page="/Shop/Orders/Index"><i class="md md-shopping-cart"></i><span> سفارشات </span></a>
+                </li>
 
                 @if (AuthHelper.CurrentAccountRole() == Roles.Admin)
                 {
                     <li>
-                        <a class="waves-effect active" asp-page="/Inventory/Index"><i class="md md-store"></i><span> انبار </span></a>
+                        <a class="waves-effect" asp-page="/Inventory/Index"><i class="md md-store"></i><span> انبار </span></a>
                     </li>
 
                     <li class="has_sub">
@@ -68,7 +71,7 @@
                 }
 
                 <li>
-                    <a class="waves-effect active" asp-page="/Shop/Comments/Index"><i class="md md-comment"></i><span> کامنت ها </span></a>
+                    <a class="waves-effect" asp-page="/Shop/Comments/Index"><i class="md md-comment"></i><span> کامنت ها </span></a>
                 </li>
 
                 <li class="has_sub">
@@ -80,7 +83,7 @@
                 </li>
 
                 <li>
-                    <a class="waves-effect active" asp-page="/Account" asp-page-handler="Logout"><i class="md md-exit-to-app"></i><span> خروج </span></a>
+                    <a class="waves-effect" asp-page="/Account" asp-page-handler="Logout"><i class="md md-exit-to-app"></i><span> خروج </span></a>
                 </li>
 
             </ul>

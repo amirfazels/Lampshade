@@ -36,6 +36,8 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
                 TotalAmount = x.TotalAmount,
                 IsPaid = x.IsPaid,
                 IsCanceled = x.IsCanceled,
+                RefId = x.RefId,
+                DiscountAmount = x.DiscountAmount,
                 CreationDate = x.CreationDate.ToFarsi()
             });
 

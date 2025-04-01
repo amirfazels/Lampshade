@@ -10,7 +10,8 @@ using System.Text.Unicode;
 using _0_Framework.Application.ZarinPal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using _0_Framework.Infrastructure;
-using ServiceHost.Controllers;
+using InventoryManagement.Presentation.Api;
+using ShopManagement.Presentation.Api;
 
 namespace ServiceHost
 {

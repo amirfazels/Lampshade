@@ -154,7 +154,7 @@
                                             @foreach (var tag in Model.ArticleCategory.KeywordList)
                                             {
                                                 <li>
-                                                    <a asp-page="/Search" asp-route-id="@tag.Slugify">@tag</a>
+                                                    <a asp-page="/Search" asp-route-id="@tag.Slugify()">@tag</a>
                                                 </li>
                                             }
                                         </ul>

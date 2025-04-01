@@ -10,6 +10,7 @@ using System.Text.Unicode;
 using _0_Framework.Application.ZarinPal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using _0_Framework.Infrastructure;
+using ServiceHost.Controllers;
 
 namespace ServiceHost
 {
@@ -89,7 +90,9 @@ namespace ServiceHost
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/Shop/Comments", "AdminArea");
                         Options.Conventions.AuthorizeAreaFolder("Administration", "/Account", "AdminOnly");
                     }
-                );
+                )
+                .AddApplicationPart(typeof(InventoryController).Assembly)
+                .AddApplicationPart(typeof(ProductController).Assembly);
 
             builder.Services.Configure<CookiePolicyOptions>(options =>
             {
@@ -120,7 +123,7 @@ namespace ServiceHost
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
-
+            app.MapControllers();
             app.Run();
         }
     }

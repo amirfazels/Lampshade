@@ -2,9 +2,9 @@
 @using _0_Framework.Application
 @model ServiceHost.Pages.ArticleModel
 @{
-    ViewData["Title"] = Model.Article.Title; 
-    ViewData["MetaDescription"] = Model.Article.MetaDescription;
-    ViewData["Keywords"] = Model.Article.Keywords;
+    ViewData["Title"] = Model.Article?.Title ?? ""; 
+    ViewData["MetaDescription"] = Model.Article?.MetaDescription;
+    ViewData["Keywords"] = Model.Article?.Keywords;
 }
 
 <div class="breadcrumb-area section-space--half">
@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-wrapper breadcrumb-bg">
                     <div class="breadcrumb-content">
-                        <h2 class="breadcrumb-content__title">@Model.Article.Title</h2>
+                        <h2 class="breadcrumb-content__title">@Model.Article?.Title</h2>
                         <ul class="breadcrumb-content__page-map">
                             <li>
                                 <a asp-page="~/Index">صفحه اصلی</a>
@@ -22,9 +22,9 @@
                                 <a asp-page="/Articles">مقالات</a>
                             </li>
                             <li>
-                                <a asp-page="/ArticleCategory" asp-route-id="@Model.Article.CategorySlug">@Model.Article.CategoryName</a>
+                                <a asp-page="/ArticleCategory" asp-route-id="@Model.Article?.CategorySlug">@Model.Article?.CategoryName</a>
                             </li>
-                            <li class="active">@Model.Article.Title</li>
+                            <li class="active">@Model.Article?.Title</li>
                         </ul>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                                         <!--=======  post title  =======-->
 
 
-                                        <h3 class="post-title">@Model.Article.Title</h3>
+                                        <h3 class="post-title">@Model.Article?.Title</h3>
 
                                         <!--=======  End of post title  =======-->
                                         <!--=======  Post meta  =======-->
@@ -61,11 +61,11 @@
                                                 <span><i class="fa fa-user-circle"></i> Posted By: </span> <a href="#">admin</a> <span class="separator">|</span> <span>
                                                     <i class="fa fa-calendar"></i> Posted On: <a href="#">
                                                         @{
-                                                            var parts = !string.IsNullOrEmpty(Model.Article.PublishDate)
-                                                            ? Model.Article.PublishDate.Split('/')
+                                                            var parts = !string.IsNullOrEmpty(Model.Article?.PublishDate)
+                                                            ? Model.Article?.PublishDate.Split('/')
                                                             : new string[] { "", "", "" };
                                                         }
-                                                        @parts[2]
+                                                        @parts?[2]
                                                         @int.Parse(parts[1]).ToPersianMonthName(), @parts[0]
                                                     </a>
                                                 </span>
@@ -77,8 +77,8 @@
 
                                         <div class="single-blog-post-media">
                                             <div class="image">
-                                                <img src="~/ProductPicture/@Model.Article.Picture" class="img-fluid"
-                                                alt="@Model.Article.PictureAlt" title="@Model.Article.PictureTitle">
+                                                <img src="~/ProductPicture/@Model.Article?.Picture" class="img-fluid"
+                                                alt="@Model.Article?.PictureAlt" title="@Model.Article?.PictureTitle">
                                             </div>
                                         </div>
 
@@ -86,7 +86,7 @@
                                         <!--=======  Post content  =======-->
 
                                         <div class="post-content">
-                                            @Html.Raw(Model.Article.Description)
+                                            @Html.Raw(Model.Article?.Description)
                                         </div>
 
                                         <!--=======  End of Post content  =======-->
@@ -98,7 +98,7 @@
                                                 @foreach (var tag in Model.Article.KeywordList)
                                                 {
                                                     <li>
-                                                        <a asp-page="/Search" asp-route-id="@tag.Slugify">@tag</a>
+                                                        <a asp-page="/Search" asp-route-id="@tag.Slugify()">@tag</a>
                                                     </li>
                                                 }
                                             </ul>
@@ -140,7 +140,7 @@
                                     =============================================-->
 
                                     <div class="comment-section">
-                                        <h3 class="comment-counter">@Model.Article.Comments.Count نظر گذاشته شده</h3>
+                                        <h3 class="comment-counter">@Model.Article?.Comments.Count نظر گذاشته شده</h3>
 
                                         <!--=======  comment container  =======-->
 
@@ -419,7 +419,7 @@
                                             @foreach (var tag in Model.Article.KeywordList)
                                             {
                                                 <li>
-                                                    <a asp-page="/Search" asp-route-id="@tag.Slugify">@tag</a>
+                                                    <a asp-page="/Search" asp-route-id="@tag.Slugify()">@tag</a>
                                                 </li>
                                             }
 

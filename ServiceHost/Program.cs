@@ -11,6 +11,7 @@ using _0_Framework.Application.ZarinPal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using _0_Framework.Infrastructure;
 using InventoryManagement.Presentation.Api;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using ShopManagement.Presentation.Api;
 
 namespace ServiceHost
@@ -74,8 +75,16 @@ namespace ServiceHost
                         "AdminOnly",
                         policy => policy.RequireRole(new List<string> { Roles.Admin })
                     );
-                }); 
+                });
 
+            builder.Services.AddCors(options => 
+                options.AddPolicy("CorsPolicy", 
+                    policyBuilder => 
+                        policyBuilder.WithOrigins("https://localhost:5001/")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                )
+            );
 
             // Add services to the container.
             builder.Services.AddRazorPages()
